@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark" data-lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <script>try{var d=document.documentElement,l=localStorage.getItem("lang"),t=localStorage.getItem("theme");if(l==="fr"||l==="en"){d.setAttribute("data-lang",l);d.lang=l}if(t==="light"||t==="dark")d.setAttribute("data-theme",t)}catch(e){}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L'Art de la Guerre de Sun Tzu — Stratégie, Risque, Négociation, Management & Politique</title>
+  <meta name="description" content="Sun Tzu et L'Art de la Guerre appliqués à la cybersécurité, la négociation, le management et la politique." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --font-scale: 1;
+      --bg: #0c0b0a;
+      --bg-card: #161412;
+      --bg-elevated: #1e1b18;
+      --gold: #c9a227;
+      --gold-light: #e8d48b;
+      --gold-dim: #8a7020;
+      --red: #8b2e2e;
+      --red-soft: #a84848;
+      --text: #e8e2d9;
+      --text-muted: #a89f91;
+      --border: #2a2622;
+      --radius: 12px;
+      --shadow: 0 8px 32px rgba(0,0,0,0.4);
+      --transition: 0.25s ease;
+      --toolbar-bg: rgba(12,11,10,0.95);
+    }
+    [data-theme="light"] {
+      --bg: #f7f4ef;
+      --bg-card: #ffffff;
+      --bg-elevated: #f0ebe3;
+      --gold: #9a7b1a;
+      --gold-light: #7a6210;
+      --gold-dim: #c9a227;
+      --red: #a33;
+      --red-soft: #c55;
+      --text: #1a1814;
+      --text-muted: #5c564c;
+      --border: #ddd5c8;
+      --shadow: 0 8px 32px rgba(0,0,0,0.08);
+      --toolbar-bg: rgba(247,244,239,0.95);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: calc(16px * var(--font-scale)); }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+      transition: background 0.3s, color 0.3s;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 0%, rgba(201,162,39,0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 100%, rgba(139,46,46,0.05) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    [data-theme="light"] body::before {
+      background:
+        radial-gradient(ellipse at 20% 0%, rgba(201,162,39,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 100%, rgba(160,60,60,0.04) 0%, transparent 40%);
+    }
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: var(--toolbar-bg);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 1.2rem;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .toolbar-left { display: flex; align-items: center; gap: 0.6rem; }
+    .toolbar-right { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+    .logo {
+      font-family: 'Noto Serif SC', serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--gold);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .logo span { color: var(--text-muted); font-weight: 400; font-size: 0.85em; }
+    .tool-btn {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.35rem 0.65rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      white-space: nowrap;
+    }
+    .tool-btn:hover { border-color: var(--gold-dim); color: var(--gold); }
+    .tool-btn.active { background: rgba(201,162,39,0.15); border-color: var(--gold-dim); color: var(--gold); }
+    .nav-main {
+      display: flex;
+      gap: 0.2rem;
+      flex-wrap: wrap;
+    }
+    .nav-main a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 0.35rem 0.6rem;
+      border-radius: 5px;
+      transition: var(--transition);
+    }
+    .nav-main a:hover, .nav-main a.active {
+      color: var(--gold);
+      background: rgba(201,162,39,0.1);
+    }
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--gold);
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .hero {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 2.5rem;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2.5rem;
+      align-items: center;
+      z-index: 1;
+    }
+    .hero-content h1 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--gold-light);
+      margin-bottom: 0.8rem;
+    }
+    .hero-content .subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+      max-width: 480px;
+    }
+    .hero-quote {
+      border-left: 3px solid var(--gold);
+      padding: 0.7rem 0 0.7rem 1.1rem;
+      margin: 1.2rem 0;
+      font-style: italic;
+      color: var(--gold-light);
+      font-size: 1rem;
+    }
+    .hero-quote cite {
+      display: block;
+      margin-top: 0.4rem;
+      font-style: normal;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .hero-img-wrap {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    .hero-img-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      max-height: 480px;
+      object-position: top;
+      filter: saturate(0.9) contrast(1.05);
+    }
+    .hero-img-wrap::after { display: none; }
+     .hero-figure { margin: 0; }
+    .hero-img-wrap { cursor: zoom-in; }
+    .hero-img-wrap:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .zoom-hint { position: absolute; top: .6rem; right: .6rem; background: rgba(0,0,0,.55); color: #fff; width: 2rem; height: 2rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; z-index: 1; }
+    .hero-img-caption { margin-top: .6rem; text-align: center; font-size: .8rem; color: var(--text-muted); font-style: italic; }
+    .lightbox { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,.88); display: none; align-items: center; justify-content: center; flex-direction: column; gap: .8rem; padding: 1.2rem; cursor: zoom-out; }
+    .lightbox.open { display: flex; animation: fadeIn .25s ease; }
+    .lightbox img { max-width: 94vw; max-height: 80vh; object-fit: contain; border-radius: var(--radius); box-shadow: var(--shadow); cursor: default; }
+    .lightbox .lb-cap { color: #e8e2d9; font-size: .85rem; font-style: italic; text-align: center; max-width: 90vw; }
+    .lightbox .lb-close { position: absolute; top: 1rem; right: 1rem; width: 2.6rem; height: 2.6rem; border-radius: 50%; border: 1px solid var(--gold-dim); background: rgba(30,27,24,.9); color: var(--gold); font-size: 1.3rem; cursor: pointer; }
+    .lightbox .lb-close:hover { background: rgba(201,162,39,.25); }
+    .section-links {
+      max-width: 1200px;
+      margin: 0 auto 2.5rem;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.9rem;
+      z-index: 1;
+      position: relative;
+    }
+    .link-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem 1rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .link-card:hover {
+      border-color: var(--gold-dim);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+    .link-card .num {
+      font-family: 'Noto Serif SC', serif;
+      color: var(--gold);
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+    .link-card h3 { font-size: 0.9rem; font-weight: 600; color: var(--gold-light); }
+    .link-card p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.45; }
+    main { position: relative; z-index: 1; }
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    section h2 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.6rem;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    section h2 .section-num {
+      font-size: 0.85rem;
+      background: rgba(201,162,39,0.15);
+      color: var(--gold);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .section-intro { color: var(--text-muted); margin-bottom: 1.6rem; font-size: 1rem; }
+    h3 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.15rem;
+      color: var(--gold-light);
+      margin: 1.8rem 0 0.7rem;
+    }
+    h4 { font-size: 0.95rem; color: var(--gold); margin: 1.2rem 0 0.4rem; font-weight: 600; }
+    p { margin-bottom: 0.9rem; }
+    ul, ol { margin: 0.5rem 0 1rem 1.3rem; }
+    li { margin-bottom: 0.3rem; }
+    strong { color: var(--gold-light); font-weight: 600; }
+    .principles { display: grid; gap: 0.9rem; margin: 1.3rem 0; }
+    .principle {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 1rem 1.2rem;
+    }
+    .principle h4 { margin: 0 0 0.3rem; font-size: 1rem; }
+    .principle p { margin: 0; font-size: 0.9rem; color: var(--text-muted); }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 1.3rem 0;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    th, td { padding: 0.65rem 0.9rem; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--bg-elevated); color: var(--gold); font-weight: 600; white-space: nowrap; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(201,162,39,0.04); }
+    .highlight {
+      background: linear-gradient(135deg, rgba(201,162,39,0.12), rgba(139,46,46,0.08));
+      border: 1px solid var(--gold-dim);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.3rem;
+      margin: 1.5rem 0;
+      font-size: 0.98rem;
+    }
+    .highlight strong { color: var(--gold); }
+    .chain {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      align-items: center;
+      margin: 1rem 0;
+      font-size: 0.85rem;
+    }
+    .chain span {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.6rem;
+      border-radius: 5px;
+      color: var(--gold-light);
+    }
+    .chain .arrow { color: var(--gold-dim); background: none; border: none; padding: 0 0.1rem; }
+    .steps { counter-reset: step; list-style: none; margin-left: 0; }
+    .steps li {
+      counter-increment: step;
+      position: relative;
+      padding-left: 2.3rem;
+      margin-bottom: 0.9rem;
+    }
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0; top: 0;
+      width: 1.6rem; height: 1.6rem;
+      background: rgba(201,162,39,0.15);
+      color: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    blockquote {
+      border-left: 3px solid var(--red-soft);
+      padding: 0.7rem 0 0.7rem 1.1rem;
+      margin: 1.3rem 0;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .signature {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+    .signature strong { color: var(--gold); }
+    .back-top {
+      position: fixed;
+      bottom: 1.4rem;
+      right: 1.4rem;
+      background: var(--bg-elevated);
+      border: 1px solid var(--gold-dim);
+      color: var(--gold);
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition);
+      z-index: 50;
+    }
+    .back-top.visible { opacity: 1; pointer-events: auto; }
+    .back-top:hover { background: rgba(201,162,39,0.15); }
+    html[data-lang="fr"] .lang-en, html[data-lang="en"] .lang-fr { display: none !important; }
+    main > section { display: none; }
+    main > section.active { display: block; animation: fadeIn .35s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+    .pager { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .pager a { color: var(--gold); text-decoration: none; border: 1px solid var(--border); background: var(--bg-card); padding: .6rem 1rem; border-radius: var(--radius); font-size: .85rem; transition: var(--transition); }
+    .pager a:hover { border-color: var(--gold-dim); transform: translateY(-2px); }
+    @media (max-width: 900px) {
+      .nav-main { display: none; }
+      .nav-main.open {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        order: 10;
+      }
+      .menu-toggle { display: block; }
+      .toolbar { flex-wrap: wrap; }
+    }
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; gap: 1.8rem; padding-top: 2rem; }
+      .hero-figure { max-width: 340px; margin: 0 auto; }
+      section { padding: 2.2rem 1.2rem; }
+    }
+    @media (max-width: 500px) {
+      .section-links { grid-template-columns: 1fr 1fr; }
+      .tool-btn { padding: 0.3rem 0.5rem; font-size: 0.75rem; }
+    }
+
+    /* ===== Principes : menu déroulant ===== */
+    .acc-bar { display: flex; justify-content: flex-end; gap: .5rem; margin: 1rem 0 0; }
+    details.principle { padding: 0; transition: border-color var(--transition), box-shadow var(--transition); }
+    details.principle[open] { border-color: var(--gold-dim); border-left-color: var(--gold); box-shadow: var(--shadow); }
+    details.principle > summary {
+      list-style: none; cursor: pointer; -webkit-tap-highlight-color: transparent;
+      display: grid; grid-template-columns: auto 1fr auto;
+      grid-template-areas: "num title chev" ". teaser chev";
+      column-gap: .9rem; row-gap: .25rem; align-items: start; padding: 1rem 1.2rem;
+    }
+    details.principle > summary::-webkit-details-marker { display: none; }
+    details.principle > summary:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+    .p-num {
+      grid-area: num; width: 1.9rem; height: 1.9rem; border-radius: 50%;
+      background: rgba(201,162,39,.15); color: var(--gold);
+      font-family: 'Noto Serif SC', serif; font-weight: 700; font-size: .85rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    details.principle .p-title { grid-area: title; align-self: center; margin: 0; font-size: 1rem; line-height: 1.35; transition: color var(--transition); }
+    details.principle > summary:hover .p-title { color: var(--gold-light); }
+    .p-teaser { grid-area: teaser; font-size: .9rem; color: var(--text-muted); line-height: 1.55; }
+    .p-chev {
+      grid-area: chev; align-self: center; width: .6rem; height: .6rem; margin: 0 .2rem .2rem;
+      border-right: 2px solid var(--gold); border-bottom: 2px solid var(--gold);
+      transform: rotate(45deg); transition: transform .25s ease;
+    }
+    details.principle[open] .p-chev { transform: rotate(-135deg); margin: .2rem .2rem 0; }
+    details.principle .p-body { padding: .3rem 1.2rem 1.2rem; border-top: 1px dashed var(--border); margin: 0 1.2rem; padding-left: 0; padding-right: 0; }
+    details.principle[open] .p-body { animation: fadeIn .3s ease; }
+    @media (min-width: 640px) { details.principle .p-body { margin-left: 4rem; } }
+    details.principle .p-body p { margin: 0 0 .75rem; font-size: .92rem; color: var(--text); line-height: 1.7; }
+    details.principle .p-body > p:first-child, details.principle .p-body > .lang-fr:first-child + .lang-en { margin-top: .8rem; }
+    details.principle .p-body li { font-size: .92rem; color: var(--text); margin-bottom: .2rem; }
+    details.principle .p-body ul { margin: .3rem 0 .9rem 1.2rem; }
+    details.principle .p-body ul.cols { columns: 2; column-gap: 2rem; }
+    .p-body h5 { font-size: .78rem; text-transform: uppercase; letter-spacing: .07em; color: var(--gold); font-weight: 700; margin: 1.3rem 0 .45rem; }
+    .p-body > h5:first-child { margin-top: .9rem; }
+    .example {
+      background: var(--bg-elevated); border: 1px solid var(--border); border-left: 3px solid var(--red-soft);
+      border-radius: 0 var(--radius) var(--radius) 0; padding: .85rem 1rem .25rem; margin: 1rem 0;
+    }
+    .example.cyber { border-left-color: var(--gold); }
+    .ex-label { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 700; color: var(--gold); margin-bottom: .5rem; }
+    details.principle .example p { margin: 0 0 .6rem; }
+    .example .table-wrap, .example .compare, .example .chain { margin-top: .4rem; }
+    .p-note {
+      margin: 1.1rem 0 0; padding: .8rem 1rem; font-size: .92rem; line-height: 1.7;
+      background: linear-gradient(135deg, rgba(201,162,39,.12), rgba(139,46,46,.08));
+      border: 1px solid var(--gold-dim); border-radius: var(--radius);
+    }
+    .p-note strong { color: var(--gold); }
+    .formula {
+      margin: .6rem 0 .9rem; padding: .6rem 1rem; text-align: center; font-weight: 600; color: var(--gold-light);
+      background: var(--bg-card); border: 1px dashed var(--gold-dim); border-radius: var(--radius); font-size: .95rem;
+    }
+    .compare { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; margin: 1rem 0; }
+    .cmp { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: .2rem .9rem .6rem; }
+    .cmp.good { border-color: var(--gold-dim); }
+    .cmp h5 { margin-top: .8rem; }
+    .cmp .chain { margin: .4rem 0; }
+    .alloc { margin: .8rem 0 1.1rem; display: grid; gap: .9rem; }
+    .alloc-cap { font-size: .85rem; color: var(--text); margin-bottom: .35rem; }
+    .alloc-cap em { color: var(--gold); font-style: normal; font-weight: 600; }
+    .alloc-bar { display: flex; gap: 3px; height: 1.9rem; }
+    .alloc-bar i {
+      flex: 1; display: flex; align-items: center; justify-content: center; font-style: normal; font-size: .72rem; font-weight: 700;
+      border-radius: 4px; background: rgba(201,162,39,.22); color: var(--text-muted);
+    }
+    .alloc-bar i.strong { background: var(--gold); color: #1a1814; }
+    @media (max-width: 640px) {
+      .compare { grid-template-columns: 1fr; }
+      details.principle .p-body ul.cols { columns: 1; }
+      details.principle > summary { padding: .9rem 1rem; column-gap: .7rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      details.principle[open] .p-body { animation: none; }
+      .p-chev, details.principle .p-title { transition: none; }
+    }
+
+    /* ===== Cybersécurité : schémas ===== */
+    .dots { display: grid; grid-template-columns: repeat(20, 1fr); gap: 4px; max-width: 30rem; margin: .8rem 0 .5rem; }
+    .dots i { aspect-ratio: 1; border-radius: 50%; background: rgba(201,162,39,.2); }
+    .dots i.hot { background: var(--gold); box-shadow: 0 0 0 2px rgba(201,162,39,.35); }
+    details.principle .p-body p.dots-cap { font-size: .85rem; color: var(--text-muted); }
+    details.principle .p-body p.src { font-size: .8rem; color: var(--text-muted); margin-top: .6rem; }
+    details.principle .p-body p.src a { color: var(--gold); }
+    details.principle .attack { list-style: none; margin: .9rem 0 1rem; padding: 0; }
+    details.principle .attack li {
+      display: grid; grid-template-columns: minmax(9rem, 12rem) 1fr; gap: .7rem; align-items: center;
+      position: relative; margin: 0; padding-bottom: 1.3rem; font-size: .88rem;
+    }
+    details.principle .attack li:last-child { padding-bottom: 0; }
+    details.principle .attack li:not(:last-child)::after { content: '↓'; position: absolute; left: .9rem; bottom: .2rem; color: var(--gold-dim); font-size: .9rem; line-height: 1; }
+    .attack .node { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 8px; padding: .45rem .7rem; color: var(--gold-light); font-weight: 600; }
+    .attack .gate { border: 1px dashed var(--gold-dim); border-radius: 8px; padding: .45rem .7rem; background: rgba(201,162,39,.08); color: var(--text); line-height: 1.45; }
+    .attack .gate b { color: var(--gold); font-weight: 700; }
+    @media (max-width: 640px) {
+      details.principle .attack li { grid-template-columns: 1fr; gap: .35rem; }
+      .attack .gate { margin-left: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="toolbar-left">
+    <a href="#accueil" class="logo">孫子 <span>Sun Tzu</span></a>
+    <button class="menu-toggle" aria-label="Menu" onclick="document.querySelector('.nav-main').classList.toggle('open')">☰</button>
+  </div>
+  <nav class="nav-main">
+    <a href="#accueil" class="active"><span class="lang-fr">Accueil</span><span class="lang-en">Home</span></a>
+    <a href="#theorie"><span class="lang-fr">Théorie</span><span class="lang-en">Theory</span></a>
+    <a href="#cyber"><span class="lang-fr">Cybersécurité</span><span class="lang-en">Cybersecurity</span></a>
+    <a href="#negociation"><span class="lang-fr">Négociation</span><span class="lang-en">Negotiation</span></a>
+    <a href="#management">Management</a>
+    <a href="#politique"><span class="lang-fr">Politique</span><span class="lang-en">Politics</span></a>
+  </nav>
+  <div class="toolbar-right">
+    <button class="tool-btn" id="btnTheme" title="Theme" onclick="toggleTheme()">🌙</button>
+    <button class="tool-btn" id="btnLang" onclick="toggleLang()">FR</button>
+    <button class="tool-btn" onclick="changeFont(-0.1)" title="A−">A−</button>
+    <button class="tool-btn" onclick="changeFont(0.1)" title="A+">A+</button>
+    <button class="tool-btn" id="btnMusic" onclick="toggleMusic()" title="Music">🔇</button>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" onclick="closePhoto()">
+  <button class="lb-close" aria-label="Fermer / Close" onclick="closePhoto()">✕</button>
+  <img src="sun-tzu.jpg" alt="Portrait de Sun Tzu (孫子)" onclick="event.stopPropagation()" />
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<audio id="bgMusic" loop preload="metadata">
+  <source src="zen-music.mp3" type="audio/mpeg" />
+</audio>
+
+<main>
+<section id="accueil" style="border-top: none; max-width: 1200px; padding-top: 0;">
+  <div class="hero">
+    <div class="hero-content">
+      <h1 class="lang-fr">L'Art de la Guerre<br>de Sun Tzu</h1>
+      <h1 class="lang-en">The Art of War<br>by Sun Tzu</h1>
+      <p class="subtitle lang-fr">
+        Un traité de stratégie vieux de plus de 2&nbsp;000&nbsp;ans, toujours d'une actualité saisissante — de la cybersécurité à la négociation, du management à la politique.
+      </p>
+      <p class="subtitle lang-en">
+        A strategic treatise more than 2,000 years old, still strikingly relevant — from cybersecurity to negotiation, management and politics.
+      </p>
+      <div class="hero-quote">
+        <span class="lang-fr">« La meilleure victoire est celle obtenue sans combattre. »</span>
+        <span class="lang-en">“The supreme art of war is to subdue the enemy without fighting.”</span>
+        <cite>— Sun Tzu</cite>
+      </div>
+      <p class="lang-fr">
+        Sun Tzu (孫子, v. 544 – v. 496 av. J.-C.), général et stratège chinois de l'État de Wu, est traditionnellement considéré comme l'auteur de <em>L'Art de la Guerre</em> (孫子兵法). Ce traité de 13 chapitres enseigne la connaissance de soi et de l'adversaire, le choix du terrain, la tromperie, la concentration des forces et l'art de gagner sans combattre.
+      </p>
+      <p class="lang-en">
+        Sun Tzu (孫子, c. 544 – c. 496 BCE), Chinese general and strategist of the state of Wu, is traditionally regarded as the author of <em>The Art of War</em> (孫子兵法). This 13-chapter treatise teaches self-knowledge and knowledge of the adversary, choice of terrain, deception, concentration of forces, and the art of winning without fighting.
+      </p>
+      <p class="lang-fr">
+        Aujourd'hui, ses principes illuminent la gestion des risques cyber, la négociation raisonnée, le leadership et la stratégie politique.
+      </p>
+      <p class="lang-en">
+        Today, his principles illuminate cyber risk management, principled negotiation, leadership and political strategy.
+      </p>
+    </div>
+    <figure class="hero-figure">
+      <div class="hero-img-wrap" role="button" tabindex="0" aria-label="Agrandir / Enlarge" onclick="openPhoto()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openPhoto()}">
+        <img src="sun-tzu.jpg" alt="Portrait de Sun Tzu (孫子)" loading="eager" />
+        <span class="zoom-hint">⤢</span>
+      </div>
+      <figcaption class="hero-img-caption" id="photoCaption"><span class="lang-fr">Portrait traditionnel de Sun Tzu · 孫子 (représentation idéalisée)</span><span class="lang-en">Traditional portrait of Sun Tzu · 孫子 (idealised depiction)</span></figcaption>
+    </figure>
+  </div>
+
+  <div class="section-links">
+    <a href="#theorie" class="link-card">
+      <span class="num">01</span>
+      <h3 class="lang-fr">Théorie générale</h3>
+      <h3 class="lang-en">General Theory</h3>
+      <p class="lang-fr">Les idées essentielles</p>
+      <p class="lang-en">Core ideas of The Art of War</p>
+    </a>
+    <a href="#cyber" class="link-card">
+      <span class="num">02</span>
+      <h3 class="lang-fr">Cybersécurité</h3>
+      <h3 class="lang-en">Cybersecurity</h3>
+      <p class="lang-fr">GRC et risque cyber</p>
+      <p class="lang-en">GRC and cyber risk</p>
+    </a>
+    <a href="#negociation" class="link-card">
+      <span class="num">03</span>
+      <h3 class="lang-fr">Négociation</h3>
+      <h3 class="lang-en">Negotiation</h3>
+      <p class="lang-fr">Rapport de force & valeur</p>
+      <p class="lang-en">Power balance & value</p>
+    </a>
+    <a href="#management" class="link-card">
+      <span class="num">04</span>
+      <h3>Management</h3>
+      <p class="lang-fr">Leadership & organisation</p>
+      <p class="lang-en">Leadership & organisation</p>
+    </a>
+    <a href="#politique" class="link-card">
+      <span class="num">05</span>
+      <h3 class="lang-fr">Politique</h3>
+      <h3 class="lang-en">Politics</h3>
+      <p class="lang-fr">Alliances & contexte</p>
+      <p class="lang-en">Alliances & context</p>
+    </a>
+  </div>
+</section>
+
+<section id="theorie">
+  <h2><span class="section-num">01</span>
+    <span class="lang-fr">Théorie générale de L'Art de la Guerre</span>
+    <span class="lang-en">General Theory of The Art of War</span>
+  </h2>
+  <p class="section-intro lang-fr">
+    L'Art de la Guerre est un traité sur la stratégie, la connaissance de l'adversaire et la maîtrise du conflit. Ses principes s'appliquent à la négociation, au management, à la politique et à la gestion des risques.
+  </p>
+  <p class="section-intro lang-en">
+    The Art of War is a treatise on strategy, knowledge of the adversary and mastery of conflict. Its principles apply to negotiation, management, politics and risk management.
+  </p>
+
+  <h3 class="lang-fr">Les idées essentielles</h3>
+  <h3 class="lang-en">Essential ideas</h3>
+
+  <div class="acc-bar">
+    <button type="button" class="tool-btn" onclick="setAll(true)"><span class="lang-fr">Tout déplier</span><span class="lang-en">Expand all</span></button>
+    <button type="button" class="tool-btn" onclick="setAll(false)"><span class="lang-fr">Tout replier</span><span class="lang-en">Collapse all</span></button>
+  </div>
+  <div class="principles">
+    <details class="principle" id="principe-1">
+      <summary>
+        <span class="p-num" aria-hidden="true">1</span>
+        <h4 class="p-title"><span class="lang-fr">La meilleure victoire est celle obtenue sans combattre</span><span class="lang-en">The best victory is the one obtained without fighting</span></h4>
+        <span class="p-teaser"><span class="lang-fr">Le meilleur stratège gagne avant que la bataille ne commence. L'objectif n'est pas de détruire l'adversaire, mais de faire en sorte qu'il ne puisse plus atteindre son objectif.</span><span class="lang-en">The best strategist wins before the battle begins. The goal is not to destroy the adversary, but to make it impossible for them to achieve their objective.</span></span>
+        <span class="p-chev" aria-hidden="true"></span>
+      </summary>
+      <div class="p-body"><p class="lang-fr">La meilleure stratégie n'est pas celle qui gagne le plus de combats. C'est celle qui rend le combat inutile, ou qui permet de gagner avec un coût minimal.</p><p class="lang-en">The best strategy is not the one that wins the most battles. It is the one that makes the battle unnecessary, or that wins at minimal cost.</p><div class="p-note"><span class="lang-fr">C'est justement ce qui rend Sun Tzu particulièrement intéressant pour le <strong>risk management</strong> : le risk manager ne cherche pas à « combattre » tous les risques. Il cherche à comprendre le système, identifier les points critiques, réduire l'incertitude, choisir où investir et éviter que le risque ne devienne une crise.</span><span class="lang-en">This is precisely what makes Sun Tzu especially relevant to <strong>risk management</strong>: the risk manager does not try to “fight” every risk. They seek to understand the system, identify the critical points, reduce uncertainty, choose where to invest and prevent risk from turning into a crisis.</span></div></div>
+    </details>
+    <details class="principle" id="principe-2">
+      <summary>
+        <span class="p-num" aria-hidden="true">2</span>
+        <h4 class="p-title"><span class="lang-fr">Connais-toi toi-même et connais ton adversaire</span><span class="lang-en">Know yourself and know your adversary</span></h4>
+        <span class="p-teaser"><span class="lang-fr">Comprendre ses capacités, objectifs, contraintes, vulnérabilités, intentions et perception. Information → anticipation → décision.</span><span class="lang-en">Understand capabilities, objectives, constraints, vulnerabilities, intentions and perception. Information → anticipation → decision.</span></span>
+        <span class="p-chev" aria-hidden="true"></span>
+      </summary>
+      <div class="p-body"><p class="lang-fr">C'est probablement le principe fondamental.</p><p class="lang-en">This is probably the fundamental principle.</p><h5 class="lang-fr">Se connaître soi-même</h5><h5 class="lang-en">Knowing yourself</h5><ul class="lang-fr cols"><li>ses forces</li><li>ses faiblesses</li><li>ses ressources</li><li>ses limites</li><li>ses dépendances</li><li>sa capacité financière</li><li>ses compétences</li><li>sa capacité à tenir dans le temps</li><li>son niveau de préparation</li><li>ses marges de manœuvre</li><li>ce que l'on est réellement prêt à perdre</li></ul><ul class="lang-en cols"><li>your strengths</li><li>your weaknesses</li><li>your resources</li><li>your limits</li><li>your dependencies</li><li>your financial capacity</li><li>your skills</li><li>your ability to last over time</li><li>your level of preparation</li><li>your room for manoeuvre</li><li>what you are really prepared to lose</li></ul><p class="lang-fr">Il faut surtout distinguer <strong>ce que l'on croit pouvoir faire</strong> de <strong>ce que l'on est réellement capable de faire</strong>.</p><p class="lang-en">Above all, distinguish <strong>what you believe you can do</strong> from <strong>what you are actually capable of doing</strong>.</p><div class="example"><div class="ex-label"><span class="lang-fr">Exemple</span><span class="lang-en">Example</span></div><p class="lang-fr">Une entreprise pense pouvoir résister six mois à une cyberattaque majeure. Mais si elle découvre qu'elle dépend d'un prestataire critique, que ses sauvegardes ne sont pas testées et que ses procédures de crise sont théoriques, son « potentiel de résistance » est largement surestimé.</p><p class="lang-en">A company thinks it can withstand a major cyberattack for six months. But if it discovers that it depends on a critical provider, that its backups have never been tested and that its crisis procedures are only theoretical, its “resilience potential” is largely overestimated.</p></div><h5 class="lang-fr">Connaître l'adversaire</h5><h5 class="lang-en">Knowing the adversary</h5><ul class="lang-fr cols"><li>ce qu'il veut</li><li>ce qu'il refuse</li><li>ce qui lui fait peur</li><li>ses contraintes</li><li>ses ressources</li><li>ses dépendances</li><li>ses intérêts</li><li>ses alliances</li><li>son calendrier</li><li>ses vulnérabilités</li><li>sa perception de vous</li></ul><ul class="lang-en cols"><li>what they want</li><li>what they refuse</li><li>what frightens them</li><li>their constraints</li><li>their resources</li><li>their dependencies</li><li>their interests</li><li>their alliances</li><li>their timeline</li><li>their vulnerabilities</li><li>how they perceive you</li></ul><p class="lang-fr">Et surtout : ne pas confondre <strong>ce que l'adversaire dit vouloir</strong> avec <strong>ce qu'il cherche réellement à obtenir</strong>.</p><p class="lang-en">And above all: do not confuse <strong>what the adversary says they want</strong> with <strong>what they are really trying to obtain</strong>.</p><h5 class="lang-fr">La chaîne stratégique</h5><h5 class="lang-en">The strategic chain</h5><div class="chain"><span class="lang-fr">Information</span><span class="lang-en">Information</span><span class="arrow">→</span><span class="lang-fr">Compréhension</span><span class="lang-en">Understanding</span><span class="arrow">→</span><span class="lang-fr">Anticipation</span><span class="lang-en">Anticipation</span><span class="arrow">→</span><span class="lang-fr">Décision</span><span class="lang-en">Decision</span><span class="arrow">→</span><span class="lang-fr">Action</span><span class="lang-en">Action</span></div><p class="lang-fr">Une mauvaise information produit souvent une mauvaise stratégie.</p><p class="lang-en">Bad information often produces a bad strategy.</p><div class="example cyber"><div class="ex-label"><span class="lang-fr">Application au risque</span><span class="lang-en">Application to risk</span></div><p class="lang-fr">Le risk manager doit se demander : « Qu'est-ce que je sais réellement de mon risque ? Qu'est-ce que j'imagine seulement savoir ? »</p><p class="lang-en">The risk manager must ask: “What do I actually know about my risk? What do I only imagine I know?”</p></div></div>
+    </details>
+    <details class="principle" id="principe-3">
+      <summary>
+        <span class="p-num" aria-hidden="true">3</span>
+        <h4 class="p-title"><span class="lang-fr">La guerre repose sur la tromperie</span><span class="lang-en">All warfare is based on deception</span></h4>
+        <span class="p-teaser"><span class="lang-fr">Paraître faible lorsqu'on est fort, proche lorsqu'on est loin. Contrôler ce que l'adversaire sait de vous.</span><span class="lang-en">Appear weak when strong, near when far. Control what the adversary knows about you.</span></span>
+        <span class="p-chev" aria-hidden="true"></span>
+      </summary>
+      <div class="p-body"><p class="lang-fr">Cette idée est souvent mal comprise. Sun Tzu ne dit pas simplement : « mentez à votre adversaire ». Il dit essentiellement : <strong>ne donnez pas à l'adversaire une vision complète et exploitable de votre situation</strong>. L'information devient donc une ressource stratégique.</p><p class="lang-en">This idea is often misunderstood. Sun Tzu is not simply saying “lie to your adversary”. He is essentially saying: <strong>do not give the adversary a complete, exploitable picture of your situation</strong>. Information thus becomes a strategic resource.</p><div class="example"><div class="ex-label"><span class="lang-fr">Exemple militaire</span><span class="lang-en">Military example</span></div><p class="lang-fr">Faire croire que l'on est faible peut pousser l'adversaire à attaquer trop tôt. Faire croire que l'on est proche peut l'amener à déplacer ses forces alors que l'on est encore loin.</p><p class="lang-en">Making the enemy believe you are weak may push them to attack too early. Making them believe you are close may lead them to move their forces while you are still far away.</p></div><h5 class="lang-fr">Transposition moderne</h5><h5 class="lang-en">Modern transposition</h5><div class="example cyber"><div class="ex-label"><span class="lang-fr">En cybersécurité</span><span class="lang-en">In cybersecurity</span></div><ul class="lang-fr"><li>ne pas exposer inutilement ses infrastructures</li><li>réduire les informations disponibles publiquement</li><li>segmenter son SI</li><li>utiliser des leurres</li><li>contrôler les informations révélées pendant une crise</li><li>éviter de donner à un attaquant une cartographie complète de son environnement</li></ul><ul class="lang-en"><li>do not needlessly expose your infrastructure</li><li>reduce the information publicly available</li><li>segment your information system</li><li>use decoys</li><li>control the information disclosed during a crisis</li><li>avoid giving an attacker a complete map of your environment</li></ul></div><div class="example"><div class="ex-label"><span class="lang-fr">En négociation</span><span class="lang-en">In negotiation</span></div><p class="lang-fr">Vous n'avez pas nécessairement intérêt à révéler :</p><p class="lang-en">You do not necessarily benefit from revealing:</p><ul class="lang-fr"><li>votre budget maximal</li><li>votre urgence</li><li>votre solution de repli</li><li>votre véritable calendrier</li><li>votre point de rupture</li></ul><ul class="lang-en"><li>your maximum budget</li><li>your urgency</li><li>your fallback solution</li><li>your real timeline</li><li>your breaking point</li></ul></div><div class="p-note"><span class="lang-fr"><strong>Mais attention :</strong> la tromperie stratégique n'est pas nécessairement le mensonge. Cela peut être simplement : <strong>choisir ce que l'autre peut observer</strong>.</span><span class="lang-en"><strong>But beware:</strong> strategic deception is not necessarily lying. It can simply be: <strong>choosing what the other side can observe</strong>.</span></div></div>
+    </details>
+    <details class="principle" id="principe-4">
+      <summary>
+        <span class="p-num" aria-hidden="true">4</span>
+        <h4 class="p-title"><span class="lang-fr">Choisis le terrain du conflit</span><span class="lang-en">Choose the ground of conflict</span></h4>
+        <span class="p-teaser"><span class="lang-fr">Ne laisse pas l'adversaire décider où et quand. Une force inférieure peut vaincre si elle impose un environnement favorable.</span><span class="lang-en">Do not let the adversary decide where and when. An inferior force can win if it imposes a favourable environment.</span></span>
+        <span class="p-chev" aria-hidden="true"></span>
+      </summary>
+      <div class="p-body"><p class="lang-fr">C'est un principe extrêmement puissant. Celui qui choisit :</p><p class="lang-en">This is an extremely powerful principle. Whoever chooses:</p><ul class="lang-fr cols"><li>le lieu</li><li>le moment</li><li>les règles</li><li>le rythme</li><li>le périmètre</li></ul><ul class="lang-en cols"><li>the place</li><li>the moment</li><li>the rules</li><li>the pace</li><li>the scope</li></ul><p class="lang-fr">possède souvent un avantage considérable.</p><p class="lang-en">often holds a considerable advantage.</p><div class="example"><div class="ex-label"><span class="lang-fr">Exemple militaire</span><span class="lang-en">Military example</span></div><p class="lang-fr">Une petite force peut être vulnérable dans une plaine mais très efficace dans une montagne, une ville, un passage étroit ou un environnement difficile. La force brute devient alors moins importante.</p><p class="lang-en">A small force may be vulnerable on a plain but very effective in mountains, a city, a narrow pass or a difficult environment. Brute force then matters less.</p></div><div class="example"><div class="ex-label"><span class="lang-fr">Exemple professionnel</span><span class="lang-en">Professional example</span></div><p class="lang-fr">Vous êtes candidat à un poste. Si vous acceptez uniquement le terrain choisi par le recruteur : « Pourquoi devriez-vous accepter notre salaire de 55 k€ ? » — vous êtes déjà placé sur son terrain.</p><p class="lang-en">You are a candidate for a job. If you only accept the ground chosen by the recruiter: “Why should you accept our salary of €55k?” — you are already on their ground.</p><p class="lang-fr">Vous pouvez déplacer la discussion : « Avant de parler de rémunération, regardons le périmètre réel du poste, les responsabilités, les objectifs et le niveau de risque associé. » Vous avez changé le cadre de négociation.</p><p class="lang-en">You can shift the discussion: “Before talking about pay, let’s look at the real scope of the role, the responsibilities, the objectives and the level of associated risk.” You have changed the negotiation frame.</p></div><div class="example cyber"><div class="ex-label"><span class="lang-fr">En cybersécurité</span><span class="lang-en">In cybersecurity</span></div><p class="lang-fr">L'entreprise ne doit pas attendre que l'attaquant choisisse : « Quand allons-nous réagir ? » Elle doit avoir préparé :</p><p class="lang-en">The company must not wait for the attacker to decide: “When will we react?” It must have prepared:</p><ul class="lang-fr cols"><li>les scénarios</li><li>les procédures</li><li>les responsabilités</li><li>les seuils d'escalade</li><li>les moyens de communication</li><li>les sauvegardes</li><li>les plans de continuité</li></ul><ul class="lang-en cols"><li>scenarios</li><li>procedures</li><li>responsibilities</li><li>escalation thresholds</li><li>communication channels</li><li>backups</li><li>continuity plans</li></ul><p class="lang-fr">Elle choisit ainsi <strong>son terrain avant la crise</strong>.</p><p class="lang-en">It thus chooses <strong>its ground before the crisis</strong>.</p></div></div>
+    </details>
+    <details class="principle" id="principe-5">
+      <summary>
+        <span class="p-num" aria-hidden="true">5</span>
+        <h4 class="p-title"><span class="lang-fr">Évite les affrontements inutiles</span><span class="lang-en">Avoid unnecessary confrontations</span></h4>
+        <span class="p-teaser"><span class="lang-fr">Une victoire coûteuse peut être une mauvaise victoire. Comparer gain × coût × risque × conséquences.</span><span class="lang-en">A costly victory can be a bad victory. Compare expected gain × cost × risk × consequences.</span></span>
+        <span class="p-chev" aria-hidden="true"></span>
+      </summary>
+      <div class="p-body"><p class="lang-fr">C'est probablement l'une des idées les plus modernes de Sun Tzu. Gagner n'est pas forcément une victoire. Il faut mesurer :</p><p class="lang-en">This is probably one of Sun Tzu’s most modern ideas. Winning is not necessarily a victory. You must weigh:</p><div class="formula"><span class="lang-fr">Gain × coût × risque × conséquences</span><span class="lang-en">Gain × cost × risk × consequences</span></div><p class="lang-fr">Une victoire qui détruit vos ressources peut être une défaite stratégique.</p><p class="lang-en">A victory that destroys your resources can be a strategic defeat.</p><div class="example"><div class="ex-label"><span class="lang-fr">Exemple</span><span class="lang-en">Example</span></div><p class="lang-fr">Vous pouvez gagner une bataille commerciale mais :</p><p class="lang-en">You can win a commercial battle but:</p><ul class="lang-fr"><li>perdre votre meilleur client</li><li>détériorer votre réputation</li><li>épuiser vos équipes</li><li>engager une procédure juridique</li><li>provoquer une réaction de votre concurrent</li></ul><ul class="lang-en"><li>lose your best client</li><li>damage your reputation</li><li>exhaust your teams</li><li>trigger legal proceedings</li><li>provoke a reaction from your competitor</li></ul><p class="lang-fr"><strong>Vous avez gagné l'affrontement, mais perdu la guerre.</strong></p><p class="lang-en"><strong>You have won the confrontation but lost the war.</strong></p></div><div class="example cyber"><div class="ex-label"><span class="lang-fr">En cybersécurité</span><span class="lang-en">In cybersecurity</span></div><p class="lang-fr">Une organisation peut décider de restaurer immédiatement tous ses systèmes. Mais si elle ne comprend pas l'origine de l'attaque, elle peut restaurer… un environnement toujours compromis.</p><p class="lang-en">An organisation may decide to restore all its systems immediately. But if it does not understand the origin of the attack, it may restore… an environment that is still compromised.</p><p class="lang-fr">Parfois, ne pas agir immédiatement est une décision stratégique. Il faut distinguer : <strong>urgence ≠ précipitation</strong>.</p><p class="lang-en">Sometimes, not acting immediately is a strategic decision. One must distinguish: <strong>urgency ≠ haste</strong>.</p></div></div>
+    </details>
+    <details class="principle" id="principe-6">
+      <summary>
+        <span class="p-num" aria-hidden="true">6</span>
+        <h4 class="p-title"><span class="lang-fr">Concentre tes forces</span><span class="lang-en">Concentrate your forces</span></h4>
+        <span class="p-teaser"><span class="lang-fr">Ne sois pas puissant partout : sois décisif au bon endroit et au bon moment.</span><span class="lang-en">Do not be strong everywhere: be decisive at the right place and the right time.</span></span>
+        <span class="p-chev" aria-hidden="true"></span>
+      </summary>
+      <div class="p-body"><p class="lang-fr">Il ne faut pas chercher à être excellent partout. <strong>Il faut être décisif là où cela compte.</strong> Imaginez dix ressources disponibles :</p><p class="lang-en">Do not try to be excellent everywhere. <strong>Be decisive where it matters.</strong> Imagine ten available resources:</p><div class="alloc"><div class="alloc-row"><div class="alloc-cap"><span class="lang-fr">Réparties : 1 + 1 + … + 1</span><span class="lang-en">Spread: 1 + 1 + … + 1</span> <em>→ <span class="lang-fr">dix capacités faibles</span><span class="lang-en">ten weak capabilities</span></em></div><div class="alloc-bar"><i>1</i><i>1</i><i>1</i><i>1</i><i>1</i><i>1</i><i>1</i><i>1</i><i>1</i><i>1</i></div></div><div class="alloc-row"><div class="alloc-cap"><span class="lang-fr">Concentrées : 7 + 2 + 1</span><span class="lang-en">Concentrated: 7 + 2 + 1</span> <em>→ <span class="lang-fr">une capacité décisive</span><span class="lang-en">one decisive capability</span></em></div><div class="alloc-bar"><i class="strong" style="flex:7">7</i><i style="flex:2">2</i><i style="flex:1">1</i></div></div></div><div class="example"><div class="ex-label"><span class="lang-fr">Exemple militaire</span><span class="lang-en">Military example</span></div><p class="lang-fr">Une armée peut concentrer ses forces sur un point faible du dispositif adverse.</p><p class="lang-en">An army can concentrate its forces on a weak point in the enemy’s dispositions.</p></div><div class="example cyber"><div class="ex-label"><span class="lang-fr">En cybersécurité</span><span class="lang-en">In cybersecurity</span></div><p class="lang-fr">Une entreprise possède un budget limité. Elle pourrait acheter 15 outils, 10 solutions de sécurité, 8 plateformes. Mais elle peut obtenir davantage de résilience en renforçant trois domaines critiques :</p><p class="lang-en">A company has a limited budget. It could buy 15 tools, 10 security solutions, 8 platforms. But it can obtain more resilience by strengthening three critical areas:</p><ol class="steps"><li><span class="lang-fr">identité</span><span class="lang-en">identity</span></li><li><span class="lang-fr">sauvegardes</span><span class="lang-en">backups</span></li><li><span class="lang-fr">systèmes critiques</span><span class="lang-en">critical systems</span></li></ol></div><div class="p-note"><span class="lang-fr"><strong>Principe :</strong> la priorité n'est pas de réduire tous les risques. La priorité est de réduire <em>suffisamment</em> les risques les plus importants. C'est exactement une logique de <strong>risk-based approach</strong>.</span><span class="lang-en"><strong>Principle:</strong> the priority is not to reduce all risks. The priority is to reduce the most important risks <em>sufficiently</em>. This is exactly a <strong>risk-based approach</strong>.</span></div></div>
+    </details>
+    <details class="principle" id="principe-7">
+      <summary>
+        <span class="p-num" aria-hidden="true">7</span>
+        <h4 class="p-title"><span class="lang-fr">Sois adaptable</span><span class="lang-en">Be adaptable</span></h4>
+        <span class="p-teaser"><span class="lang-fr">Une stratégie rigide devient prévisible. Situation → observation → adaptation → action.</span><span class="lang-en">A rigid strategy quickly becomes predictable. Situation → observation → adaptation → action.</span></span>
+        <span class="p-chev" aria-hidden="true"></span>
+      </summary>
+      <div class="p-body"><p class="lang-fr">Une stratégie parfaite sur le papier peut devenir mauvaise lorsque la réalité change. Sun Tzu raisonne donc en boucle :</p><p class="lang-en">A strategy that is perfect on paper can become a bad one when reality changes. Sun Tzu therefore thinks in loops:</p><div class="chain"><span class="lang-fr">Observer</span><span class="lang-en">Observe</span><span class="arrow">→</span><span class="lang-fr">Comprendre</span><span class="lang-en">Understand</span><span class="arrow">→</span><span class="lang-fr">Décider</span><span class="lang-en">Decide</span><span class="arrow">→</span><span class="lang-fr">Agir</span><span class="lang-en">Act</span><span class="arrow">→</span><span class="lang-fr">Observer à nouveau</span><span class="lang-en">Observe again</span></div><p class="lang-fr">Ce qui fonctionne aujourd'hui peut devenir dangereux demain.</p><p class="lang-en">What works today may be dangerous tomorrow.</p><div class="example"><div class="ex-label"><span class="lang-fr">Exemple</span><span class="lang-en">Example</span></div><p class="lang-fr">Vous avez prévu : scénario A → réponse A. Mais l'adversaire fait : scénario B.</p><p class="lang-en">You planned: scenario A → response A. But the adversary does: scenario B.</p><p class="lang-fr">Une organisation <strong>rigide</strong> continue d'appliquer A. Une organisation <strong>adaptative</strong> change immédiatement.</p><p class="lang-en">A <strong>rigid</strong> organisation keeps applying A. An <strong>adaptive</strong> organisation changes immediately.</p></div><div class="example cyber"><div class="ex-label"><span class="lang-fr">En cybersécurité</span><span class="lang-en">In cybersecurity</span></div><p class="lang-fr">Un plan de réponse à incident doit être un <strong>cadre de décision</strong>, pas un scénario mécanique. Les attaquants changent. Les technologies changent. Les dépendances changent. Les réglementations changent. Les risques changent.</p><p class="lang-en">An incident response plan must be a <strong>decision framework</strong>, not a mechanical script. Attackers change. Technologies change. Dependencies change. Regulations change. Risks change.</p><div class="formula"><span class="lang-fr">Stratégie = intention stable + moyens adaptables</span><span class="lang-en">Strategy = stable intent + adaptable means</span></div></div></div>
+    </details>
+    <details class="principle" id="principe-8">
+      <summary>
+        <span class="p-num" aria-hidden="true">8</span>
+        <h4 class="p-title"><span class="lang-fr">La vitesse peut être déterminante</span><span class="lang-en">Speed can be decisive</span></h4>
+        <span class="p-teaser"><span class="lang-fr">Agir rapidement sur une opportunité empêche l'adversaire de s'adapter — si la préparation est solide.</span><span class="lang-en">Acting quickly on an opportunity prevents the adversary from adapting — if preparation is solid.</span></span>
+        <span class="p-chev" aria-hidden="true"></span>
+      </summary>
+      <div class="p-body"><p class="lang-fr">La vitesse est importante parce qu'elle réduit le temps laissé à l'adversaire. Mais il y a une nuance essentielle : <strong>la vitesse sans préparation produit des erreurs</strong>. Sun Tzu ne prône donc pas simplement la précipitation.</p><p class="lang-en">Speed matters because it reduces the time left to the adversary. But there is an essential nuance: <strong>speed without preparation produces mistakes</strong>. Sun Tzu does not simply advocate haste.</p><h5 class="lang-fr">Trois vitesses à distinguer</h5><h5 class="lang-en">Three kinds of speed</h5><ul class="lang-fr"><li><strong>Vitesse de décision</strong> — décider rapidement.</li><li><strong>Vitesse d'exécution</strong> — mettre rapidement la décision en œuvre.</li><li><strong>Vitesse d'adaptation</strong> — modifier rapidement la stratégie lorsque la situation change.</li></ul><ul class="lang-en"><li><strong>Decision speed</strong> — deciding quickly.</li><li><strong>Execution speed</strong> — putting the decision into effect quickly.</li><li><strong>Adaptation speed</strong> — changing the strategy quickly when the situation changes.</li></ul><div class="example cyber"><div class="ex-label"><span class="lang-fr">Exemple en cybersécurité : une détection arrive à 10h00</span><span class="lang-en">Cybersecurity example: a detection arrives at 10:00</span></div><div class="compare"><div class="cmp bad"><h5><span class="lang-fr">Organisation A</span><span class="lang-en">Organisation A</span></h5><div class="chain"><span class="lang-fr">Alerte</span><span class="lang-en">Alert</span><span class="arrow">→</span><span class="lang-fr">Réunion</span><span class="lang-en">Meeting</span><span class="arrow">→</span><span class="lang-fr">Validation</span><span class="lang-en">Validation</span><span class="arrow">→</span><span class="lang-fr">Comité</span><span class="lang-en">Committee</span><span class="arrow">→</span><span class="lang-fr">Décision</span><span class="lang-en">Decision</span><span class="arrow">→</span><span class="lang-fr">Action</span><span class="lang-en">Action</span></div></div><div class="cmp good"><h5><span class="lang-fr">Organisation B</span><span class="lang-en">Organisation B</span></h5><div class="chain"><span class="lang-fr">Alerte</span><span class="lang-en">Alert</span><span class="arrow">→</span><span class="lang-fr">Seuil prédéfini</span><span class="lang-en">Predefined threshold</span><span class="arrow">→</span><span class="lang-fr">Cellule de crise</span><span class="lang-en">Crisis cell</span><span class="arrow">→</span><span class="lang-fr">Containment</span><span class="lang-en">Containment</span></div></div></div><p class="lang-fr">La deuxième organisation possède un avantage stratégique. Pourquoi ? <strong>Parce qu'elle a préparé la décision avant que la crise arrive.</strong></p><p class="lang-en">The second organisation has a strategic advantage. Why? <strong>Because it prepared the decision before the crisis arrived.</strong></p></div></div>
+    </details>
+    <details class="principle" id="principe-9">
+      <summary>
+        <span class="p-num" aria-hidden="true">9</span>
+        <h4 class="p-title"><span class="lang-fr">Utilise les forces de l'adversaire contre lui</span><span class="lang-en">Use the adversary's strengths against them</span></h4>
+        <span class="p-teaser"><span class="lang-fr">Exploite contraintes, erreurs, divisions, dépendances et excès de confiance.</span><span class="lang-en">Exploit constraints, errors, divisions, dependencies and overconfidence.</span></span>
+        <span class="p-chev" aria-hidden="true"></span>
+      </summary>
+      <div class="p-body"><p class="lang-fr">C'est l'une des idées les plus subtiles. <strong>Une force peut devenir une faiblesse lorsqu'elle est poussée à l'excès.</strong></p><p class="lang-en">This is one of the subtlest ideas. <strong>A strength can become a weakness when pushed to excess.</strong></p><div class="example"><div class="ex-label"><span class="lang-fr">Exemple</span><span class="lang-en">Example</span></div><p class="lang-fr">Un concurrent possède une énorme organisation. C'est une force. Mais cela peut également créer :</p><p class="lang-en">A competitor has a huge organisation. That is a strength. But it can also create:</p><ul class="lang-fr cols"><li>lenteur</li><li>bureaucratie</li><li>dépendance aux procédures</li><li>difficulté à changer rapidement</li></ul><ul class="lang-en cols"><li>slowness</li><li>bureaucracy</li><li>dependence on procedures</li><li>difficulty changing quickly</li></ul><p class="lang-fr">Une petite entreprise peut exploiter cette rigidité.</p><p class="lang-en">A small company can exploit this rigidity.</p></div><h5 class="lang-fr">Autres exemples</h5><h5 class="lang-en">Other examples</h5><div class="table-wrap"><table><thead><tr><th><span class="lang-fr">Situation</span><span class="lang-en">Situation</span></th><th><span class="lang-fr">Force</span><span class="lang-en">Strength</span></th><th><span class="lang-fr">Revers</span><span class="lang-en">Downside</span></th></tr></thead><tbody><tr><td><span class="lang-fr">Entreprise très centralisée</span><span class="lang-en">Highly centralised company</span></td><td><span class="lang-fr">Forte cohérence</span><span class="lang-en">Strong consistency</span></td><td><span class="lang-fr">Faible agilité</span><span class="lang-en">Low agility</span></td></tr><tr><td><span class="lang-fr">Entreprise très dépendante d'un fournisseur</span><span class="lang-en">Company highly dependent on one supplier</span></td><td><span class="lang-fr">Efficacité</span><span class="lang-en">Efficiency</span></td><td><span class="lang-fr">Vulnérabilité stratégique</span><span class="lang-en">Strategic vulnerability</span></td></tr><tr><td><span class="lang-fr">Adversaire très confiant</span><span class="lang-en">Very confident adversary</span></td><td><span class="lang-fr">Capacité de décision</span><span class="lang-en">Decision-making ability</span></td><td><span class="lang-fr">Risque de sous-estimation</span><span class="lang-en">Risk of underestimation</span></td></tr></tbody></table></div><div class="example cyber"><div class="ex-label"><span class="lang-fr">En cybersécurité</span><span class="lang-en">In cybersecurity</span></div><p class="lang-fr">Une organisation très automatisée peut être extrêmement efficace. Mais si un attaquant compromet le mécanisme d'automatisation, l'efficacité devient un <strong>multiplicateur de l'attaque</strong>.</p><p class="lang-en">A highly automated organisation can be extremely efficient. But if an attacker compromises the automation mechanism, efficiency becomes a <strong>multiplier of the attack</strong>.</p><p class="lang-fr">La question devient donc : « Quelle force de mon adversaire crée également une dépendance exploitable ? »</p><p class="lang-en">The question therefore becomes: “Which strength of my adversary also creates an exploitable dependency?”</p></div></div>
+    </details>
+    <details class="principle" id="principe-10">
+      <summary>
+        <span class="p-num" aria-hidden="true">10</span>
+        <h4 class="p-title"><span class="lang-fr">La logistique est aussi importante que le combat</span><span class="lang-en">Logistics are as important as combat</span></h4>
+        <span class="p-teaser"><span class="lang-fr">Ressources, communications, ravitaillement, organisation. La stratégie sans capacité d'exécution ne vaut rien.</span><span class="lang-en">Resources, communications, supply, organisation. Strategy without execution capability is worthless.</span></span>
+        <span class="p-chev" aria-hidden="true"></span>
+      </summary>
+      <div class="p-body"><p class="lang-fr">C'est un principe fondamental. <strong>Une stratégie magnifique qui ne peut pas être exécutée ne vaut rien.</strong> Une armée doit disposer de :</p><p class="lang-en">This is a fundamental principle. <strong>A magnificent strategy that cannot be executed is worth nothing.</strong> An army needs:</p><ul class="lang-fr cols"><li>nourriture</li><li>armes</li><li>munitions</li><li>transport</li><li>communications</li><li>renseignements</li><li>soins</li><li>maintenance</li></ul><ul class="lang-en cols"><li>food</li><li>weapons</li><li>ammunition</li><li>transport</li><li>communications</li><li>intelligence</li><li>medical care</li><li>maintenance</li></ul><p class="lang-fr">Dans une entreprise, c'est la même chose.</p><p class="lang-en">In a company, it is the same.</p><div class="example"><div class="ex-label"><span class="lang-fr">Exemple</span><span class="lang-en">Example</span></div><p class="lang-fr">Vous avez un excellent plan de réponse à incident. Mais :</p><p class="lang-en">You have an excellent incident response plan. But:</p><ul class="lang-fr"><li>personne ne connaît son rôle</li><li>les contacts d'urgence sont obsolètes</li><li>les sauvegardes ne sont pas testées</li><li>les prestataires ne répondent pas</li><li>les accès d'urgence ne fonctionnent pas</li><li>personne n'a réalisé d'exercice</li></ul><ul class="lang-en"><li>nobody knows their role</li><li>emergency contacts are out of date</li><li>backups are untested</li><li>providers do not respond</li><li>emergency accesses do not work</li><li>nobody has run an exercise</li></ul><p class="lang-fr">Votre stratégie existe dans un document. <strong>Mais elle n'existe pas réellement dans l'organisation.</strong></p><p class="lang-en">Your strategy exists in a document. <strong>But it does not really exist in the organisation.</strong></p></div><div class="example cyber"><div class="ex-label"><span class="lang-fr">En GRC</span><span class="lang-en">In GRC</span></div><p class="lang-fr">C'est une distinction fondamentale :</p><p class="lang-en">A fundamental distinction:</p><div class="formula"><span class="lang-fr">Conformité documentaire ≠ capacité opérationnelle</span><span class="lang-en">Documentary compliance ≠ operational capability</span></div><p class="lang-fr">Un PCA peut être parfaitement rédigé et totalement inutile s'il n'est jamais testé.</p><p class="lang-en">A business continuity plan (BCP) can be perfectly written and totally useless if it is never tested.</p></div></div>
+    </details>
+  </div>
+
+  <h3 class="lang-fr">La philosophie générale</h3>
+  <h3 class="lang-en">The general philosophy</h3>
+  <div class="chain">
+    <span class="lang-fr">Connaître</span><span class="lang-en">Know</span><span class="arrow">→</span>
+    <span class="lang-fr">Anticiper</span><span class="lang-en">Anticipate</span><span class="arrow">→</span>
+    <span class="lang-fr">Éviter</span><span class="lang-en">Avoid</span><span class="arrow">→</span>
+    <span class="lang-fr">Déséquilibrer</span><span class="lang-en">Unbalance</span><span class="arrow">→</span>
+    <span class="lang-fr">Concentrer</span><span class="lang-en">Concentrate</span><span class="arrow">→</span>
+    <span class="lang-fr">Agir</span><span class="lang-en">Act</span><span class="arrow">→</span>
+    <span class="lang-fr">S'adapter</span><span class="lang-en">Adapt</span>
+  </div>
+
+  <h4 class="lang-fr">La boucle complète en 9 temps</h4><h4 class="lang-en">The full loop in 9 steps</h4>
+<p class="lang-fr">Les neuf principes ci-dessus peuvent finalement être réunis dans une seule boucle :</p><p class="lang-en">The nine principles above can finally be gathered into a single loop:</p>
+  <ol class="steps"><li><span class="lang-fr"><strong>CONNAÎTRE</strong> — Comprendre soi-même et l'environnement.</span><span class="lang-en"><strong>KNOW</strong> — Understand yourself and the environment.</span></li><li><span class="lang-fr"><strong>OBSERVER</strong> — Collecter les informations pertinentes.</span><span class="lang-en"><strong>OBSERVE</strong> — Collect the relevant information.</span></li><li><span class="lang-fr"><strong>ANTICIPER</strong> — Imaginer les scénarios possibles.</span><span class="lang-en"><strong>ANTICIPATE</strong> — Imagine the possible scenarios.</span></li><li><span class="lang-fr"><strong>CHOISIR</strong> — Déterminer le terrain, le moment et les priorités.</span><span class="lang-en"><strong>CHOOSE</strong> — Determine the ground, the timing and the priorities.</span></li><li><span class="lang-fr"><strong>CONCENTRER</strong> — Mettre les ressources là où elles produisent le plus d'effet.</span><span class="lang-en"><strong>CONCENTRATE</strong> — Put resources where they produce the most effect.</span></li><li><span class="lang-fr"><strong>AGIR</strong> — Avec suffisamment de vitesse.</span><span class="lang-en"><strong>ACT</strong> — With enough speed.</span></li><li><span class="lang-fr"><strong>S'ADAPTER</strong> — Modifier la stratégie en fonction de la réalité.</span><span class="lang-en"><strong>ADAPT</strong> — Change the strategy according to reality.</span></li><li><span class="lang-fr"><strong>PRÉSERVER</strong> — Éviter les coûts inutiles.</span><span class="lang-en"><strong>PRESERVE</strong> — Avoid unnecessary costs.</span></li><li><span class="lang-fr"><strong>DURER</strong> — Disposer de la logistique et des ressources nécessaires.</span><span class="lang-en"><strong>LAST</strong> — Have the logistics and resources required.</span></li></ol>
+
+  <div class="highlight">
+    <strong class="lang-fr">Ne cherche pas simplement à être plus fort que ton adversaire.</strong>
+    <strong class="lang-en">Do not simply seek to be stronger than your adversary.</strong><br>
+    <span class="lang-fr">Cherche à construire une situation dans laquelle il ne peut plus gagner.</span>
+    <span class="lang-en">Seek to build a situation in which they can no longer win.</span>
+  </div>
+
+  <h3 class="lang-fr">Transposition à la cybersécurité (aperçu)</h3>
+  <h3 class="lang-en">Application to cybersecurity (overview)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Sun Tzu</th>
+          <th class="lang-fr">Cybersécurité</th>
+          <th class="lang-en">Cybersecurity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="lang-fr">Connaître l'ennemi</span><span class="lang-en">Know the enemy</span></td><td>Threat intelligence</td></tr>
+        <tr><td><span class="lang-fr">Connaître son camp</span><span class="lang-en">Know yourself</span></td><td><span class="lang-fr">Cartographie SI</span><span class="lang-en">Asset mapping</span></td></tr>
+        <tr><td><span class="lang-fr">Choisir le terrain</span><span class="lang-en">Choose the ground</span></td><td><span class="lang-fr">Réduire surface d'attaque</span><span class="lang-en">Reduce attack surface</span></td></tr>
+        <tr><td><span class="lang-fr">Concentrer</span><span class="lang-en">Concentrate forces</span></td><td><span class="lang-fr">Prioriser risques critiques</span><span class="lang-en">Prioritise critical risks</span></td></tr>
+        <tr><td><span class="lang-fr">Tromper</span><span class="lang-en">Deceive</span></td><td><span class="lang-fr">honeypots</span><span class="lang-en">Deception</span></td></tr>
+        <tr><td><span class="lang-fr">Anticiper</span><span class="lang-en">Anticipate</span></td><td><span class="lang-fr">EBIOS RM</span><span class="lang-en">Threat modeling</span></td></tr>
+        <tr><td><span class="lang-fr">Éviter le combat</span><span class="lang-en">Avoid fighting</span></td><td><span class="lang-fr">Prévention & résilience</span><span class="lang-en">Prevention & resilience</span></td></tr>
+        <tr><td><span class="lang-fr">S'adapter</span><span class="lang-en">Adapt</span></td><td><span class="lang-fr">Réponse à incident</span><span class="lang-en">Incident response</span></td></tr>
+        <tr><td><span class="lang-fr">Logistique</span><span class="lang-en">Logistics</span></td><td><span class="lang-fr">PCA/PRA, sauvegardes</span><span class="lang-en">BCP/DRP, backups</span></td></tr>
+        <tr><td><span class="lang-fr">Victoire sans combat</span><span class="lang-en">Victory without fighting</span></td><td><span class="lang-fr">Empêcher l'incident</span><span class="lang-en">Prevent the incident</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="highlight">
+    <span class="lang-fr">La cybersécurité stratégique ne consiste pas à « tout sécuriser ». Elle consiste à comprendre où se trouve le risque réellement critique, puis à concentrer les moyens là où ils changent le rapport de force.</span>
+    <span class="lang-en">Strategic cybersecurity is not about “securing everything”. It is about understanding where the truly critical risk lies, then concentrating resources where they change the balance of power.</span>
+  </div>
+
+  <nav class="pager"><a href="#accueil"><span class="lang-fr">← Accueil</span><span class="lang-en">← Home</span></a><a href="#cyber"><span class="lang-fr">Cybersécurité →</span><span class="lang-en">Cybersecurity →</span></a></nav>
+</section>
+
+<section id="cyber">
+  <h2><span class="section-num">02</span>
+    <span class="lang-fr">L'Art de la Guerre appliqué à la cybersécurité</span>
+    <span class="lang-en">The Art of War applied to cybersecurity</span>
+  </h2>
+  <p class="section-intro lang-fr">
+    Transposition vers l'Enterprise Risk Management / Cyber Risk Management. L'idée centrale : passer de « combattre les menaces » à « façonner le risque pour que l'adversaire ne puisse pas produire l'effet recherché ».
+  </p>
+  <p class="section-intro lang-en">
+    A transposition to Enterprise Risk Management / Cyber Risk Management. The core idea: move from “fighting threats” to “shaping risk so that the adversary cannot produce the desired effect”.
+  </p>
+
+    <div class="acc-bar">
+    <button type="button" class="tool-btn" onclick="setAll(true,'cyber')"><span class="lang-fr">Tout déplier</span><span class="lang-en">Expand all</span></button>
+    <button type="button" class="tool-btn" onclick="setAll(false,'cyber')"><span class="lang-fr">Tout replier</span><span class="lang-en">Collapse all</span></button>
+  </div>
+  <div class="principles">
+    <details class="principle" id="cyber-1">
+      <summary>
+        <span class="p-num" aria-hidden="true">1</span>
+        <h4 class="p-title"><span class="lang-fr">Transformer L'Art de la Guerre en Art de la gestion du risque</span><span class="lang-en">Transforming The Art of War into the Art of risk management</span></h4>
+        <span class="p-teaser"><span class="lang-fr">Dix principes de Sun Tzu, dix réflexes de gestion du risque.</span><span class="lang-en">Ten Sun Tzu principles, ten risk-management reflexes.</span></span>
+        <span class="p-chev" aria-hidden="true"></span>
+      </summary>
+      <div class="p-body"><div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Sun Tzu</th><th class="lang-fr">Stratégie du risque</th><th class="lang-en">Risk strategy</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="lang-fr">Connais ton ennemi</span><span class="lang-en">Know your enemy</span></td><td class="lang-fr">Identifier menaces, scénarios, motivations</td><td class="lang-en">Identify threats, scenarios, motivations</td></tr>
+        <tr><td><span class="lang-fr">Connais-toi toi-même</span><span class="lang-en">Know yourself</span></td><td class="lang-fr">Actifs, dépendances, vulnérabilités, résilience</td><td class="lang-en">Assets, dependencies, vulnerabilities, resilience</td></tr>
+        <tr><td><span class="lang-fr">Choisis le terrain</span><span class="lang-en">Choose the ground</span></td><td class="lang-fr">Réduire l'exposition, accepter ou transférer</td><td class="lang-en">Reduce exposure, accept or transfer risk</td></tr>
+        <tr><td><span class="lang-fr">Évite le combat</span><span class="lang-en">Avoid fighting</span></td><td class="lang-fr">Éviter les scénarios inacceptables</td><td class="lang-en">Avoid unacceptable risk scenarios</td></tr>
+        <tr><td><span class="lang-fr">Concentre tes forces</span><span class="lang-en">Concentrate forces</span></td><td class="lang-fr">Investir sur les risques prioritaires</td><td class="lang-en">Invest in priority risks</td></tr>
+        <tr><td><span class="lang-fr">Trompe l'adversaire</span><span class="lang-en">Deceive the adversary</span></td><td class="lang-fr">Réduire les infos exploitables, cyberdéception</td><td class="lang-en">Reduce exploitable info, cyber deception</td></tr>
+        <tr><td><span class="lang-fr">Sois imprévisible</span><span class="lang-en">Be unpredictable</span></td><td class="lang-fr">Éviter les contrôles prévisibles, tester</td><td class="lang-en">Avoid predictable controls, test regularly</td></tr>
+        <tr><td><span class="lang-fr">Utilise les forces de l'adversaire</span><span class="lang-en">Use adversary's forces</span></td><td class="lang-fr">Transformer contraintes en leviers</td><td class="lang-en">Turn constraints into resilience levers</td></tr>
+        <tr><td><span class="lang-fr">Adapte-toi</span><span class="lang-en">Adapt</span></td><td class="lang-fr">Actualiser l'analyse du risque</td><td class="lang-en">Continuously update risk analysis</td></tr>
+        <tr><td><span class="lang-fr">Gagne sans combattre</span><span class="lang-en">Win without fighting</span></td><td class="lang-fr">Empêcher l'impact majeur</td><td class="lang-en">Prevent major impact</td></tr>
+      </tbody>
+    </table>
+  </div></div>
+    </details>
+    <details class="principle" id="cyber-2">
+      <summary>
+        <span class="p-num" aria-hidden="true">2</span>
+        <h4 class="p-title"><span class="lang-fr">Le changement fondamental</span><span class="lang-en">The fundamental shift</span></h4>
+        <span class="p-teaser"><span class="lang-fr">On ne part plus du contrôle : on part du scénario.</span><span class="lang-en">We no longer start from the control: we start from the scenario.</span></span>
+        <span class="p-chev" aria-hidden="true"></span>
+      </summary>
+      <div class="p-body"><p class="lang-fr">La gestion classique demande : « Quels contrôles mettre en place ? » L'approche Sun Tzu demande : « Quel événement pourrait réellement nous mettre en difficulté, et comment faire pour qu'il n'atteigne pas son objectif ? »</p>
+  <p class="lang-en">Classical management asks: “What controls should we put in place?” The Sun Tzu approach asks: “What event could really put us in difficulty, and how can we prevent it from achieving its objective?”</p>
+  <div class="chain">
+    <span class="lang-fr">Menace</span><span class="lang-en">Threat</span><span class="arrow">→</span>
+    <span class="lang-fr">Scénario</span><span class="lang-en">Scenario</span><span class="arrow">→</span>
+    <span class="lang-fr">Objectif attaquant</span><span class="lang-en">Attacker objective</span><span class="arrow">→</span>
+    <span class="lang-fr">Impact métier</span><span class="lang-en">Business impact</span><span class="arrow">→</span>
+    <span class="lang-fr">Vulnérabilités</span><span class="lang-en">Vulnerabilities</span><span class="arrow">→</span>
+    <span class="lang-fr">Barrières</span><span class="lang-en">Barriers</span><span class="arrow">→</span>
+    <span class="lang-fr">Résilience</span><span class="lang-en">Resilience</span>
+  </div></div>
+    </details>
+    <details class="principle" id="cyber-3">
+      <summary>
+        <span class="p-num" aria-hidden="true">3</span>
+        <h4 class="p-title"><span class="lang-fr">Exemple — une banque</span><span class="lang-en">Example — a bank</span></h4>
+        <span class="p-teaser"><span class="lang-fr">Ransomware, paiements interrompus : raisonner en scénario, pas en outil.</span><span class="lang-en">Ransomware, payments interrupted: reason in scenarios, not tools.</span></span>
+        <span class="p-chev" aria-hidden="true"></span>
+      </summary>
+      <div class="p-body"><div class="compare"><div class="cmp bad"><h5><span class="lang-fr">Approche traditionnelle</span><span class="lang-en">Traditional approach</span></h5><p class="lang-fr">« Protéger Active Directory » → MFA, segmentation, PAM… <strong>Raisonnement en contrôles.</strong></p><p class="lang-en">“Protect Active Directory” → MFA, segmentation, PAM… <strong>Control-centric reasoning.</strong></p></div><div class="cmp good"><h5><span class="lang-fr">Approche Sun Tzu</span><span class="lang-en">Sun Tzu approach</span></h5><p class="lang-fr">Quel <strong>scénario stratégique</strong> empêcher ? Par exemple :</p><p class="lang-en">Which <strong>strategic scenario</strong> must be prevented? For example:</p><div class="chain"><span class="lang-fr">Ransomware</span><span class="lang-en">Ransomware</span><span class="arrow">→</span><span class="lang-fr">Compte privilégié</span><span class="lang-en">Privileged account</span><span class="arrow">→</span><span class="lang-fr">Propagation</span><span class="lang-en">Propagation</span><span class="arrow">→</span><span class="lang-fr">Indisponibilité</span><span class="lang-en">Unavailability</span><span class="arrow">→</span><span class="lang-fr">Paiements interrompus</span><span class="lang-en">Payments interrupted</span></div></div></div><p class="lang-fr">Quel est l'objectif réel de l'adversaire ? Pas nécessairement « voler des données » : ce peut être de créer une interruption suffisamment importante pour obtenir un avantage économique. On agit alors sur plusieurs dimensions :</p><p class="lang-en">What is the adversary’s real objective? Not necessarily “stealing data”: it may be to create an interruption large enough to gain an economic advantage. One then acts on several dimensions:</p><div class="chain"><span class="lang-fr">Empêcher</span><span class="lang-en">Prevent</span><span class="arrow">→</span><span class="lang-fr">Détecter</span><span class="lang-en">Detect</span><span class="arrow">→</span><span class="lang-fr">Contenir</span><span class="lang-en">Contain</span><span class="arrow">→</span><span class="lang-fr">Résister</span><span class="lang-en">Resist</span><span class="arrow">→</span><span class="lang-fr">Restaurer</span><span class="lang-en">Restore</span><span class="arrow">→</span><span class="lang-fr">Continuer l'activité</span><span class="lang-en">Continue operations</span></div><div class="highlight"><span class="lang-fr">On ne cherche pas nécessairement à empêcher l'attaque. On cherche à empêcher l'attaque d'obtenir son résultat stratégique.</span><span class="lang-en">We do not necessarily seek to prevent the attack. We seek to prevent the attack from achieving its strategic outcome.</span></div></div>
+    </details>
+    <details class="principle" id="cyber-4">
+      <summary>
+        <span class="p-num" aria-hidden="true">4</span>
+        <h4 class="p-title"><span class="lang-fr">Formule pour le GRC</span><span class="lang-en">A formula for GRC</span></h4>
+        <span class="p-teaser"><span class="lang-fr">Empêcher les scénarios critiques d'atteindre leurs objectifs.</span><span class="lang-en">Prevent critical scenarios from achieving their objectives.</span></span>
+        <span class="p-chev" aria-hidden="true"></span>
+      </summary>
+      <div class="p-body"><blockquote>
+    <span class="lang-fr">La stratégie du risque consiste moins à supprimer toutes les menaces qu'à empêcher les scénarios critiques d'atteindre leurs objectifs.</span>
+    <span class="lang-en">Risk strategy is less about eliminating all threats than about preventing critical scenarios from achieving their objectives.</span>
+  </blockquote>
+  <ul>
+    <li><span class="lang-fr"><strong>Niveau 1 — Menace</strong> : Qui ou quoi peut nous attaquer ?</span><span class="lang-en"><strong>Level 1 — Threat</strong> : Who or what can attack us?</span></li>
+    <li><span class="lang-fr"><strong>Niveau 2 — Scénario</strong> : Comment produire un événement redouté ?</span><span class="lang-en"><strong>Level 2 — Scenario</strong> : How could a dreaded event be produced?</span></li>
+    <li><span class="lang-fr"><strong>Niveau 3 — Objectif</strong> : Quel résultat empêcher absolument ?</span><span class="lang-en"><strong>Level 3 — Objective</strong> : What outcome must we absolutely prevent?</span></li>
+  </ul></div>
+    </details>
+    <details class="principle" id="cyber-5">
+      <summary>
+        <span class="p-num" aria-hidden="true">5</span>
+        <h4 class="p-title"><span class="lang-fr">Parallèle avec EBIOS RM</span><span class="lang-en">Parallel with EBIOS RM</span></h4>
+        <span class="p-teaser"><span class="lang-fr">100 vulnérabilités, 5 chemins critiques : où intervenir avec le minimum de ressources ?</span><span class="lang-en">100 vulnerabilities, 5 critical paths: where to intervene with the fewest resources?</span></span>
+        <span class="p-chev" aria-hidden="true"></span>
+      </summary>
+      <div class="p-body"><div class="chain">
+    <span class="lang-fr">Valeur métier</span><span class="lang-en">Business value</span><span class="arrow">→</span>
+    <span class="lang-fr">Événement redouté</span><span class="lang-en">Dreaded event</span><span class="arrow">→</span>
+    <span class="lang-fr">Objectif attaquant</span><span class="lang-en">Attacker objective</span><span class="arrow">→</span>
+    <span class="lang-fr">Source de risque</span><span class="lang-en">Risk source</span><span class="arrow">→</span>
+    <span class="lang-fr">Chemin d'attaque</span><span class="lang-en">Attack path</span><span class="arrow">→</span>
+    <span class="lang-fr">Mesures</span><span class="lang-en">Measures</span>
+  </div>
+  <p class="lang-fr">Sun Tzu ajoute : « Où intervenir pour modifier le rapport de force avec le minimum de ressources ? » 100 vulnérabilités, mais seulement 5 chemins critiques → concentrer les ressources sur ces 5.</p>
+  <p class="lang-en">Sun Tzu adds: “Where should I intervene to change the balance of power with minimum resources?” 100 vulnerabilities, but only 5 critical paths → concentrate resources on those 5.</p><div class="dots" role="img" aria-label="100 vulnérabilités dont 5 chemins d'attaque critiques / 100 vulnerabilities including 5 critical attack paths"><i></i><i></i><i></i><i></i><i></i><i></i><i class="hot"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="hot"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="hot"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="hot"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="hot"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><p class="lang-fr dots-cap"><strong>100 vulnérabilités · 5 chemins d'attaque critiques.</strong></p><p class="lang-en dots-cap"><strong>100 vulnerabilities · 5 critical attack paths.</strong></p><div class="p-note"><span class="lang-fr"><strong>Concentrer ne veut pas dire négliger le reste.</strong> EBIOS RM le prévoit : l'atelier 1 établit un <em>socle de sécurité</em> (référentiels applicables et écarts constatés) ; l'effort stratégique porte ensuite sur les scénarios qui comptent vraiment.</span><span class="lang-en"><strong>Concentrating does not mean neglecting the rest.</strong> EBIOS RM provides for this: workshop 1 establishes a <em>security baseline</em> (applicable standards and identified gaps); the strategic effort then goes to the scenarios that really matter.</span></div><h5 class="lang-fr">Lecture « Sun Tzu » des cinq ateliers</h5><h5 class="lang-en">A “Sun Tzu” reading of the five workshops</h5><div class="table-wrap"><table><thead><tr><th><span class="lang-fr">Atelier EBIOS RM</span><span class="lang-en">EBIOS RM workshop</span></th><th><span class="lang-fr">Lecture Sun Tzu</span><span class="lang-en">Sun Tzu reading</span></th></tr></thead><tbody><tr><td><span class="lang-fr">Atelier 1 — Cadrage et socle de sécurité</span><span class="lang-en">Workshop 1 — Scope and security baseline</span></td><td><span class="lang-fr"><strong>Connais-toi toi-même</strong> : valeurs métier, biens supports, événements redoutés</span><span class="lang-en"><strong>Know yourself</strong>: business values, supporting assets, dreaded events</span></td></tr><tr><td><span class="lang-fr">Atelier 2 — Sources de risque</span><span class="lang-en">Workshop 2 — Risk sources</span></td><td><span class="lang-fr"><strong>Connais ton ennemi</strong> : couples source de risque / objectif visé</span><span class="lang-en"><strong>Know your enemy</strong>: pairs of risk source and targeted objective</span></td></tr><tr><td><span class="lang-fr">Atelier 3 — Scénarios stratégiques</span><span class="lang-en">Workshop 3 — Strategic scenarios</span></td><td><span class="lang-fr"><strong>Choisis le terrain</strong> : chemins d'attaque à l'échelle de l'écosystème</span><span class="lang-en"><strong>Choose the ground</strong>: attack paths across the ecosystem</span></td></tr><tr><td><span class="lang-fr">Atelier 4 — Scénarios opérationnels</span><span class="lang-en">Workshop 4 — Operational scenarios</span></td><td><span class="lang-fr"><strong>Anticipe</strong> : modes opératoires de l'attaquant</span><span class="lang-en"><strong>Anticipate</strong>: the attacker’s operating methods</span></td></tr><tr><td><span class="lang-fr">Atelier 5 — Traitement du risque</span><span class="lang-en">Workshop 5 — Risk treatment</span></td><td><span class="lang-fr"><strong>Concentre tes forces, adapte-toi</strong> : choix des mesures, risque résiduel, suivi</span><span class="lang-en"><strong>Concentrate forces, adapt</strong>: choice of measures, residual risk, follow-up</span></td></tr></tbody></table></div><p class="lang-fr src">Mise en correspondance proposée ici à titre d'interprétation : EBIOS RM ne se réclame pas de Sun Tzu. Source : <a href="https://cyber.gouv.fr/la-methode-ebios-risk-manager" target="_blank" rel="noopener">ANSSI — La méthode EBIOS Risk Manager</a>.</p><p class="lang-en src">Mapping proposed here as an interpretation: EBIOS RM does not claim Sun Tzu. Source: <a href="https://cyber.gouv.fr/la-methode-ebios-risk-manager" target="_blank" rel="noopener">ANSSI — The EBIOS Risk Manager method</a>.</p></div>
+    </details>
+    <details class="principle" id="cyber-6">
+      <summary>
+        <span class="p-num" aria-hidden="true">6</span>
+        <h4 class="p-title"><span class="lang-fr">Définition de la résilience</span><span class="lang-en">Definition of resilience</span></h4>
+        <span class="p-teaser"><span class="lang-fr">L'attaquant peut gagner une bataille technique et perdre la bataille stratégique.</span><span class="lang-en">The attacker may win a technical battle and lose the strategic one.</span></span>
+        <span class="p-chev" aria-hidden="true"></span>
+      </summary>
+      <div class="p-body"><div class="highlight">
+    <span class="lang-fr">Même si l'adversaire franchit certaines barrières, il ne peut pas obtenir l'effet stratégique recherché.</span>
+    <span class="lang-en">Even if the adversary breaches certain barriers, they cannot achieve the strategic effect they seek.</span>
+  </div><h5 class="lang-fr">Exemple : un ransomware</h5><h5 class="lang-en">Example: a ransomware</h5><p class="lang-fr">Sans barrières, la chaîne d'attaque va jusqu'au bout. Avec elles, chaque maillon coupé empêche l'attaquant d'atteindre l'effet recherché :</p><p class="lang-en">Without barriers, the attack chain runs to the end. With them, each severed link stops the attacker from reaching the desired effect:</p><ol class="attack"><li><span class="node">1. <span class="lang-fr">Attaque</span><span class="lang-en">Attack</span></span></li><li><span class="node">2. <span class="lang-fr">Compromission</span><span class="lang-en">Compromise</span></span></li><li><span class="node">3. <span class="lang-fr">Propagation</span><span class="lang-en">Propagation</span></span><span class="gate"><b><span class="lang-fr">Barrière</span><span class="lang-en">Barrier</span></b> · <span class="lang-fr">Segmentation</span><span class="lang-en">Segmentation</span></span></li><li><span class="node">4. <span class="lang-fr">Chiffrement</span><span class="lang-en">Encryption</span></span><span class="gate"><b><span class="lang-fr">Barrière</span><span class="lang-en">Barrier</span></b> · <span class="lang-fr">Sauvegardes immuables</span><span class="lang-en">Immutable backups</span></span></li><li><span class="node">5. <span class="lang-fr">Indisponibilité</span><span class="lang-en">Unavailability</span></span><span class="gate"><b><span class="lang-fr">Barrière</span><span class="lang-en">Barrier</span></b> · <span class="lang-fr">Procédures de crise + infrastructure de secours</span><span class="lang-en">Crisis procedures + fallback infrastructure</span></span></li></ol><div class="formula"><span class="lang-fr">Attaque ≠ arrêt de l'activité</span><span class="lang-en">Attack ≠ business stoppage</span></div><p class="lang-fr">L'attaquant gagne peut-être une bataille technique. <strong>Mais il perd la bataille stratégique.</strong></p><p class="lang-en">The attacker may win a technical battle. <strong>But loses the strategic one.</strong></p></div>
+    </details>
+    <details class="principle" id="cyber-7">
+      <summary>
+        <span class="p-num" aria-hidden="true">7</span>
+        <h4 class="p-title"><span class="lang-fr">Matrice « Sun Tzu du risque »</span><span class="lang-en">“Sun Tzu of risk” matrix</span></h4>
+        <span class="p-teaser"><span class="lang-fr">Neuf questions stratégiques, neuf questions GRC.</span><span class="lang-en">Nine strategic questions, nine GRC questions.</span></span>
+        <span class="p-chev" aria-hidden="true"></span>
+      </summary>
+      <div class="p-body"><div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="lang-fr">Question stratégique</th><th class="lang-en">Strategic question</th><th class="lang-fr">Question GRC</th><th class="lang-en">GRC question</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="lang-fr">Qui est l'adversaire ?</td><td class="lang-en">Who is the adversary?</td><td class="lang-fr">Quelle source de risque ?</td><td class="lang-en">What risk source?</td></tr>
+        <tr><td class="lang-fr">Que veut-il obtenir ?</td><td class="lang-en">What does he want?</td><td class="lang-fr">Quel objectif / impact ?</td><td class="lang-en">What objective / impact?</td></tr>
+        <tr><td class="lang-fr">Que protégeons-nous ?</td><td class="lang-en">What do we protect?</td><td class="lang-fr">Quelles valeurs métier ?</td><td class="lang-en">What business values?</td></tr>
+        <tr><td class="lang-fr">Où sommes-nous faibles ?</td><td class="lang-en">Where are we weak?</td><td class="lang-fr">Vulnérabilités / dépendances</td><td class="lang-en">Vulnerabilities / dependencies</td></tr>
+        <tr><td class="lang-fr">Où agir ?</td><td class="lang-en">Where to act?</td><td class="lang-fr">Quelles barrières ?</td><td class="lang-en">What barriers?</td></tr>
+        <tr><td class="lang-fr">Où concentrer ?</td><td class="lang-en">Where to concentrate?</td><td class="lang-fr">Risques prioritaires</td><td class="lang-en">Priority risks</td></tr>
+        <tr><td class="lang-fr">Si une barrière tombe ?</td><td class="lang-en">If a barrier falls?</td><td class="lang-fr">Quelle résilience ?</td><td class="lang-en">What resilience?</td></tr>
+        <tr><td class="lang-fr">Comment réagir à l'imprévu ?</td><td class="lang-en">How to react to the unexpected?</td><td class="lang-fr">Capacité de réponse</td><td class="lang-en">Response capability</td></tr>
+        <tr><td class="lang-fr">Gagner sans combattre ?</td><td class="lang-en">Win without fighting?</td><td class="lang-fr">Rendre le scénario inopérant</td><td class="lang-en">Make the scenario inoperative</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="highlight">
+    <strong class="lang-fr">Positionnement GRC :</strong>
+    <strong class="lang-en">GRC positioning:</strong><br>
+    <span class="lang-fr">« La gestion stratégique du risque ne consiste pas à éliminer toutes les menaces. Elle consiste à comprendre les scénarios qui peuvent réellement compromettre les objectifs de l'organisation et à concentrer les moyens là où ils permettent d'empêcher, contenir ou neutraliser leur effet. »</span>
+    <span class="lang-en">“Strategic risk management is not about eliminating all threats. It is about understanding the scenarios that can truly compromise the organisation's objectives and concentrating resources where they prevent, contain or neutralise their effect.”</span>
+  </div></div>
+    </details>
+    <details class="principle" id="cyber-8">
+      <summary>
+        <span class="p-num" aria-hidden="true">8</span>
+        <h4 class="p-title"><span class="lang-fr">Une grille de raisonnement</span><span class="lang-en">A reasoning grid</span></h4>
+        <span class="p-teaser"><span class="lang-fr">Une grille de raisonnement, pas une formule mathématique.</span><span class="lang-en">A reasoning grid, not a mathematical formula.</span></span>
+        <span class="p-chev" aria-hidden="true"></span>
+      </summary>
+      <div class="p-body"><div class="highlight"><span class="lang-fr"><strong>Risque stratégique</strong> = capacité de la menace × exposition × vulnérabilité × impact − capacité de maîtrise et de résilience.<br><small>Ce n'est pas une formule mathématique universelle : c'est une grille de raisonnement.</small></span><span class="lang-en"><strong>Strategic risk</strong> = threat capability × exposure × vulnerability × impact − control and resilience capability.<br><small>This is not a universal mathematical formula: it is a reasoning grid.</small></span></div></div>
+    </details>
+  </div>
+
+  <nav class="pager"><a href="#theorie"><span class="lang-fr">← Théorie</span><span class="lang-en">← Theory</span></a><a href="#negociation"><span class="lang-fr">Négociation →</span><span class="lang-en">Negotiation →</span></a></nav>
+</section>
+
+<section id="negociation">
+  <h2><span class="section-num">03</span>
+    <span class="lang-fr">L'Art de la Guerre appliqué à la négociation</span>
+    <span class="lang-en">The Art of War applied to negotiation</span>
+  </h2>
+  <p class="section-intro lang-fr">
+    « Guerre » = gestion d'un rapport de force, non manipulation. Ne pas écraser l'autre, mais construire une situation où un accord devient préférable au conflit pour les deux parties.
+  </p>
+  <p class="section-intro lang-en">
+    “War” = managing a balance of power, not manipulation. Do not crush the other party, but build a situation in which agreement becomes preferable to conflict for both sides.
+  </p>
+
+  <h3 class="lang-fr">Les 10 principes</h3>
+  <h3 class="lang-en">The 10 principles</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Sun Tzu</th><th class="lang-fr">Négociation</th><th class="lang-en">Negotiation</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="lang-fr">Connais ton ennemi</span><span class="lang-en">Know your enemy</span></td><td class="lang-fr">Intérêts, contraintes, objectifs de l'autre</td><td class="lang-en">Interests, constraints, objectives of the other</td></tr>
+        <tr><td><span class="lang-fr">Connais-toi toi-même</span><span class="lang-en">Know yourself</span></td><td class="lang-fr">Objectifs, limites, alternatives, pouvoir réel (BATNA)</td><td class="lang-en">Objectives, limits, alternatives, real power (BATNA)</td></tr>
+        <tr><td><span class="lang-fr">Choisis le terrain</span><span class="lang-en">Choose the ground</span></td><td class="lang-fr">Lieu, moment, format, personnes</td><td class="lang-en">Place, time, format, people present</td></tr>
+        <tr><td><span class="lang-fr">Ne combats pas inutilement</span><span class="lang-en">Do not fight unnecessarily</span></td><td class="lang-fr">Ne transforme pas chaque désaccord en confrontation</td><td class="lang-en">Do not turn every disagreement into confrontation</td></tr>
+        <tr><td><span class="lang-fr">Concentre tes forces</span><span class="lang-en">Concentrate forces</span></td><td class="lang-fr">Les 1–2 points réellement décisifs</td><td class="lang-en">The 1–2 truly decisive points</td></tr>
+        <tr><td><span class="lang-fr">Ne révèle pas tout</span><span class="lang-en">Do not reveal everything</span></td><td class="lang-fr">BATNA, prix minimum, contraintes</td><td class="lang-en">BATNA, minimum price, constraints</td></tr>
+        <tr><td><span class="lang-fr">Utilise l'information</span><span class="lang-en">Use information</span></td><td class="lang-fr">Pose plus de questions que tu ne donnes d'infos</td><td class="lang-en">Ask more questions than you give information</td></tr>
+        <tr><td><span class="lang-fr">Sois adaptable</span><span class="lang-en">Be adaptable</span></td><td class="lang-fr">Change selon les réactions</td><td class="lang-en">Change strategy according to reactions</td></tr>
+        <tr><td><span class="lang-fr">Évite les positions rigides</span><span class="lang-en">Avoid rigid positions</span></td><td class="lang-fr">Négocie les intérêts, pas les positions</td><td class="lang-en">Negotiate interests, not positions</td></tr>
+        <tr><td><span class="lang-fr">Gagne sans combattre</span><span class="lang-en">Win without fighting</span></td><td class="lang-fr">Accord = meilleure option pour l'autre</td><td class="lang-en">Make agreement the best option for the other</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="lang-fr">Points clés</h3>
+  <h3 class="lang-en">Key points</h3>
+  <p class="lang-fr"><strong>1. Connais ton adversaire</strong> — Qu'est-ce qui est important pour lui ? Objectif, contraintes, calendrier, alternatives, urgence, qui décide.</p>
+  <p class="lang-en"><strong>1. Know your adversary</strong> — What is important to them? Objective, constraints, timeline, alternatives, urgency, who decides.</p>
+  <p class="lang-fr"><strong>2. Connais-toi toi-même</strong> — Idéal → acceptable → limite → alternative (BATNA). Sans alternative, le pouvoir est faible.</p>
+  <p class="lang-en"><strong>2. Know yourself</strong> — Ideal → acceptable → limit → alternative (BATNA). Without an alternative, power is weak.</p>
+  <p class="lang-fr"><strong>3. Choisis le terrain</strong> — Déplacer le cadre : « Avant le prix, regardons le périmètre et les résultats attendus. »</p>
+  <p class="lang-en"><strong>3. Choose the ground</strong> — Shift the frame: “Before price, let’s look at scope and expected results.”</p>
+  <p class="lang-fr"><strong>4. Ne négocie pas contre toi-même</strong> — ❌ « Je demande 80k, mais je pourrais accepter 72k. » → « Je me situe autour de 80k. » Puis silence.</p>
+  <p class="lang-en"><strong>4. Do not negotiate against yourself</strong> — ❌ “I ask 80k, but I could accept 72k.” → “I am around 80k.” Then silence.</p>
+  <p class="lang-fr"><strong>5. Position → intérêt</strong> — « Nous ne pouvons pas dépasser 65k. » → « Qu'est-ce qui vous empêche ? » → explorer variable, prime, télétravail…</p>
+  <p class="lang-en"><strong>5. Position → interest</strong> — “We cannot go beyond 65k.” → “What prevents you?” → explore variable, bonus, remote work…</p>
+
+  <div class="highlight">
+    <span class="lang-fr">Ne cherche pas à être plus fort que l'autre. Cherche à rendre ton accord plus intéressant pour lui que ton désaccord.</span>
+    <span class="lang-en">Do not seek to be stronger than the other. Seek to make your agreement more interesting for them than disagreement.</span>
+  </div>
+
+  <h3 class="lang-fr">Exemple : préparer une négociation salariale</h3>
+  <h3 class="lang-en">Example: preparing a salary negotiation</h3>
+  <div class="chain"><span class="lang-fr">Idéal : 80 k€</span><span class="lang-en">Ideal: €80k</span><span class="arrow">→</span><span class="lang-fr">Cible : 75 k€</span><span class="lang-en">Target: €75k</span><span class="arrow">→</span><span class="lang-fr">Minimum : 70 k€</span><span class="lang-en">Minimum: €70k</span><span class="arrow">→</span><span class="lang-fr">Alternative : autre poste / freelance</span><span class="lang-en">Alternative: other job / freelance</span></div>
+  <p class="lang-fr">Le point crucial est le dernier : plus ton alternative est crédible, moins tu dépends de l'accord. « Je souhaite cet accord, mais je peux vivre avec son absence. »</p>
+  <p class="lang-en">The crucial point is the last one: the more credible your alternative, the less you depend on the deal. “I want this agreement, but I can live without it.”</p>
+
+  <nav class="pager"><a href="#cyber"><span class="lang-fr">← Cybersécurité</span><span class="lang-en">← Cybersecurity</span></a><a href="#management"><span class="lang-fr">Management →</span><span class="lang-en">Management →</span></a></nav>
+</section>
+
+<section id="management">
+  <h2><span class="section-num">04</span>
+    <span class="lang-fr">L'Art de la Guerre appliqué au management</span>
+    <span class="lang-en">The Art of War applied to management</span>
+  </h2>
+  <p class="section-intro lang-fr">
+    Un bon manager ne gagne pas parce qu'il commande plus fort. Il gagne parce qu'il crée les conditions permettant à son équipe de réussir.
+  </p>
+  <p class="section-intro lang-en">
+    A good manager does not win because he commands louder. He wins because he creates the conditions that allow his team to succeed.
+  </p>
+
+  <h3 class="lang-fr">Les principes</h3>
+  <h3 class="lang-en">The principles</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Sun Tzu</th><th>Management</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="lang-fr">Connais-toi toi-même</span><span class="lang-en">Know yourself</span></td><td class="lang-fr">Forces, faiblesses, biais, limites</td><td class="lang-en">Strengths, weaknesses, biases, limits</td></tr>
+        <tr><td><span class="lang-fr">Connais ton adversaire</span><span class="lang-en">Know the adversary</span></td><td class="lang-fr">Marché, concurrents, parties prenantes</td><td class="lang-en">Market, competitors, stakeholders</td></tr>
+        <tr><td><span class="lang-fr">Connais ton armée</span><span class="lang-en">Know your army</span></td><td class="lang-fr">Compétences, motivations, limites de l'équipe</td><td class="lang-en">Skills, motivations, team limits</td></tr>
+        <tr><td><span class="lang-fr">Choisis le terrain</span><span class="lang-en">Choose the ground</span></td><td class="lang-fr">Environnement de travail favorable</td><td class="lang-en">Favourable working environment</td></tr>
+        <tr><td><span class="lang-fr">Concentre tes forces</span><span class="lang-en">Concentrate forces</span></td><td class="lang-fr">Prioriser : tout ne peut pas être urgent</td><td class="lang-en">Prioritise: not everything can be urgent</td></tr>
+        <tr><td><span class="lang-fr">Évite les batailles inutiles</span><span class="lang-en">Avoid useless battles</span></td><td class="lang-fr">Éliminer conflits et réunions sans valeur</td><td class="lang-en">Eliminate valueless conflicts and meetings</td></tr>
+        <tr><td><span class="lang-fr">Donne des objectifs clairs</span><span class="lang-en">Clear objectives</span></td><td class="lang-fr">L'équipe doit savoir ce qu'elle vise</td><td class="lang-en">The team must know what it is aiming for</td></tr>
+        <tr><td><span class="lang-fr">Sois adaptable</span><span class="lang-en">Be adaptable</span></td><td class="lang-fr">Modifier le plan si la situation change</td><td class="lang-en">Change the plan when the situation changes</td></tr>
+        <tr><td><span class="lang-fr">Utilise l'information</span><span class="lang-en">Use information</span></td><td class="lang-fr">Décider sur des faits, signaux faibles</td><td class="lang-en">Decide from facts, weak signals</td></tr>
+        <tr><td><span class="lang-fr">Gagne sans combattre</span><span class="lang-en">Win without fighting</span></td><td class="lang-fr">Résoudre avant que cela devienne crise</td><td class="lang-en">Resolve before it becomes a crisis</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="lang-fr">7 règles du management stratégique</h3>
+  <h3 class="lang-en">7 rules of strategic management</h3>
+  <ol class="steps">
+    <li><strong class="lang-fr">Connais ton équipe.</strong><strong class="lang-en">Know your team.</strong></li>
+    <li><strong class="lang-fr">Donne une direction claire.</strong><strong class="lang-en">Give a clear direction.</strong></li>
+    <li><strong class="lang-fr">Concentre les efforts.</strong><strong class="lang-en">Concentrate efforts.</strong></li>
+    <li><strong class="lang-fr">Donne les moyens d'agir.</strong><strong class="lang-en">Provide the means to act.</strong></li>
+    <li><strong class="lang-fr">Décentralise l'exécution.</strong><strong class="lang-en">Decentralise execution.</strong></li>
+    <li><strong class="lang-fr">Observe avant d'agir.</strong><strong class="lang-en">Observe before acting.</strong></li>
+    <li><strong class="lang-fr">Prépare l'équipe à l'imprévu.</strong><strong class="lang-en">Prepare the team for the unexpected.</strong></li>
+  </ol>
+
+  <div class="highlight">
+    <span class="lang-fr">Le mauvais manager dirige les personnes. Le bon manager dirige l'action. Le manager stratégique construit un environnement dans lequel les personnes peuvent réussir.</span>
+    <span class="lang-en">The bad manager directs people. The good manager directs action. The strategic manager builds an environment in which people can succeed.</span>
+  </div>
+
+  <h3 class="lang-fr">Intention stratégique → autonomie tactique</h3>
+  <h3 class="lang-en">Strategic intent → tactical autonomy</h3>
+  <p class="lang-fr">Le dirigeant donne le <strong>pourquoi</strong> et le résultat attendu ; l'équipe détermine en partie le <strong>comment</strong>. Deux nuances : <strong>information ≠ surveillance</strong> (comprendre la situation, pas contrôler chaque geste) et <strong>discipline ≠ obéissance aveugle</strong> (tenir ses engagements, documenter, remonter les problèmes).</p>
+  <p class="lang-en">The leader gives the <strong>why</strong> and the expected outcome; the team partly decides the <strong>how</strong>. Two nuances: <strong>information ≠ surveillance</strong> (understand the situation, don't control every move) and <strong>discipline ≠ blind obedience</strong> (keep commitments, document, escalate problems).</p>
+
+  <nav class="pager"><a href="#negociation"><span class="lang-fr">← Négociation</span><span class="lang-en">← Negotiation</span></a><a href="#politique"><span class="lang-fr">Politique →</span><span class="lang-en">Politics →</span></a></nav>
+</section>
+
+<section id="politique">
+  <h2><span class="section-num">05</span>
+    <span class="lang-fr">L'Art de la Guerre appliqué à la politique</span>
+    <span class="lang-en">The Art of War applied to politics</span>
+  </h2>
+  <p class="section-intro lang-fr">
+    En politique, comme à la guerre, celui qui maîtrise le contexte peut avoir moins besoin de maîtriser la force.
+  </p>
+  <p class="section-intro lang-en">
+    In politics, as in war, the one who masters the context may need less to master force.
+  </p>
+
+  <h3 class="lang-fr">Les principes</h3>
+  <h3 class="lang-en">The principles</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Sun Tzu</th><th class="lang-fr">Application politique</th><th class="lang-en">Political application</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="lang-fr">Connais ton adversaire</span><span class="lang-en">Know your adversary</span></td><td class="lang-fr">Intérêts, électeurs, contraintes, alliances</td><td class="lang-en">Interests, voters, constraints, alliances</td></tr>
+        <tr><td><span class="lang-fr">Connais-toi toi-même</span><span class="lang-en">Know yourself</span></td><td class="lang-fr">Électorat, ressources, limites, divisions</td><td class="lang-en">Electorate, resources, limits, divisions</td></tr>
+        <tr><td><span class="lang-fr">Choisis le terrain</span><span class="lang-en">Choose the ground</span></td><td class="lang-fr">Définir les sujets du débat</td><td class="lang-en">Define the subjects of debate</td></tr>
+        <tr><td><span class="lang-fr">Choisis le moment</span><span class="lang-en">Choose the moment</span></td><td class="lang-fr">Quand proposer, négocier, se positionner</td><td class="lang-en">When to propose, negotiate, take a position</td></tr>
+        <tr><td><span class="lang-fr">Concentre tes forces</span><span class="lang-en">Concentrate forces</span></td><td class="lang-fr">Ne pas disperser le capital politique</td><td class="lang-en">Do not disperse political capital</td></tr>
+        <tr><td><span class="lang-fr">Forme des alliances</span><span class="lang-en">Form alliances</span></td><td class="lang-fr">Coalitions autour d'intérêts communs</td><td class="lang-en">Coalitions around common interests</td></tr>
+        <tr><td><span class="lang-fr">Maîtrise l'information</span><span class="lang-en">Master information</span></td><td class="lang-fr">Connu, inconnu, contesté</td><td class="lang-en">Known, unknown, contested</td></tr>
+        <tr><td><span class="lang-fr">Sois adaptable</span><span class="lang-en">Be adaptable</span></td><td class="lang-fr">Ajuster quand le contexte évolue</td><td class="lang-en">Adjust when the context evolves</td></tr>
+        <tr><td><span class="lang-fr">Évite les batailles inutiles</span><span class="lang-en">Avoid useless battles</span></td><td class="lang-fr">Ne pas tout transformer en confrontation</td><td class="lang-en">Do not turn every disagreement into confrontation</td></tr>
+        <tr><td><span class="lang-fr">Gagne sans combattre</span><span class="lang-en">Win without fighting</span></td><td class="lang-fr">Compromis ou décision sans confrontation ouverte</td><td class="lang-en">Compromise or decision without open confrontation</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="lang-fr">Grille en 8 questions</h3>
+  <h3 class="lang-en">8-question grid</h3>
+  <ol class="steps">
+    <li><strong class="lang-fr">Quel est l'objectif ?</strong><strong class="lang-en">What is the objective?</strong></li>
+    <li><strong class="lang-fr">Qui décide ?</strong><strong class="lang-en">Who decides?</strong></li>
+    <li><strong class="lang-fr">Qui influence ?</strong><strong class="lang-en">Who influences?</strong></li>
+    <li><strong class="lang-fr">Qui peut bloquer ?</strong><strong class="lang-en">Who can block?</strong></li>
+    <li><strong class="lang-fr">Quels sont leurs intérêts ?</strong><strong class="lang-en">What are their interests?</strong></li>
+    <li><strong class="lang-fr">Quel est le terrain du débat ?</strong><strong class="lang-en">What is the ground of debate?</strong></li>
+    <li><strong class="lang-fr">Où concentrer les ressources ?</strong><strong class="lang-en">Where to concentrate resources?</strong></li>
+    <li><strong class="lang-fr">Quelle est la sortie ?</strong><strong class="lang-en">What is the exit?</strong></li>
+  </ol>
+
+  <div class="highlight">
+    <span class="lang-fr">La stratégie consiste moins à disposer de la plus grande force qu'à savoir où, quand et comment utiliser ses ressources pour obtenir l'effet recherché.</span>
+    <span class="lang-en">Strategy is less about having the greatest force than about knowing where, when and how to use one’s resources to achieve the desired effect.</span>
+  </div>
+
+  <div class="highlight"><span class="lang-fr"><strong>Prudence avec la métaphore :</strong> en démocratie, l'objectif n'est pas de détruire l'adversaire, mais de maîtriser le rapport de force sans détruire la possibilité de coopération future.</span><span class="lang-en"><strong>Be careful with the metaphor:</strong> in a democracy, the goal is not to destroy the adversary but to master the balance of power without destroying the possibility of future cooperation.</span></div>
+
+  <h3 class="lang-fr">Quatre domaines, une même idée</h3>
+  <h3 class="lang-en">Four domains, one idea</h3>
+  <div class="table-wrap"><table><thead><tr><th>Sun Tzu →</th><th><span class="lang-fr">Idée clé</span><span class="lang-en">Key idea</span></th></tr></thead><tbody><tr><td><strong class="lang-fr">Risque</strong><strong class="lang-en">Risk</strong></td><td><span class="lang-fr">Anticiper et réduire l'exposition</span><span class="lang-en">Anticipate and reduce exposure</span></td></tr><tr><td><strong class="lang-fr">Négociation</strong><strong class="lang-en">Negotiation</strong></td><td><span class="lang-fr">Comprendre les intérêts et maîtriser le rapport de force</span><span class="lang-en">Understand interests and master the balance of power</span></td></tr><tr><td><strong class="lang-fr">Management</strong><strong class="lang-en">Management</strong></td><td><span class="lang-fr">Organiser et concentrer les forces</span><span class="lang-en">Organise and concentrate forces</span></td></tr><tr><td><strong class="lang-fr">Politique</strong><strong class="lang-en">Politics</strong></td><td><span class="lang-fr">Construire une coalition et maîtriser le contexte de décision</span><span class="lang-en">Build a coalition and master the decision context</span></td></tr></tbody></table></div>
+
+  <nav class="pager"><a href="#management"><span class="lang-fr">← Management</span><span class="lang-en">← Management</span></a><span></span></nav>
+</section>
+
+</main>
+
+<footer>
+  <p class="lang-fr">
+    Contenu inspiré de <em>L'Art de la Guerre</em> de Sun Tzu (孫子兵法) et de ses applications modernes.<br>
+    Portrait : Sun Tzu (孫子). Musique : ambiance zen originale (koto &amp; shakuhachi).
+  </p>
+  <p class="lang-en">
+    Content inspired by Sun Tzu’s <em>The Art of War</em> (孫子兵法) and its modern applications.<br>
+    Portrait: Sun Tzu (孫子). Music: original zen ambience (koto &amp; shakuhachi).
+  </p>
+  <div class="signature">
+    <strong>by twagirumukiza</strong><br>
+    <a href="https://www.linkedin.com/in/innocent-twagirumukiza?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener">LinkedIn</a>
+    &nbsp;·&nbsp;
+    <a href="https://twagirumukiza.github.io/Twagirumukiza-Innocent/" target="_blank" rel="noopener">Site personnel / Personal website</a>
+  </div>
+  <p style="margin-top: 0.8rem;">
+    <a href="#accueil"><span class="lang-fr">↑ Retour à l'accueil</span><span class="lang-en">↑ Back to top</span></a>
+  </p>
+</footer>
+
+<a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="back-top" id="backTop" aria-label="Top">↑</a>
+
+<script>
+  function store(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+  function load(k){try{return localStorage.getItem(k)}catch(e){return null}}
+  function toggleTheme() {
+    const html = document.documentElement;
+    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    document.getElementById('btnTheme').textContent = next === 'dark' ? '🌙' : '☀️';
+    store('theme', next);
+  }
+  function toggleLang() {
+    const html = document.documentElement;
+    const next = html.getAttribute('data-lang') === 'en' ? 'fr' : 'en';
+    html.setAttribute('data-lang', next);
+    html.lang = next;
+    document.getElementById('btnLang').textContent = next === 'fr' ? 'FR' : 'EN';
+    store('lang', next);
+  }
+  function changeFont(delta) {
+    const root = document.documentElement;
+    let scale = parseFloat(getComputedStyle(root).getPropertyValue('--font-scale')) || 1;
+    scale = Math.min(1.4, Math.max(0.8, scale + delta));
+    root.style.setProperty('--font-scale', scale);
+    store('fontScale', scale);
+  }
+  let musicOn = false;
+  const audio = document.getElementById('bgMusic');
+  audio.volume = 0.35;
+  function toggleMusic() {
+    if (musicOn) {
+      audio.pause();
+      musicOn = false;
+      document.getElementById('btnMusic').textContent = '🔇';
+    } else {
+      audio.play().catch(function(){});
+      musicOn = true;
+      document.getElementById('btnMusic').textContent = '🔊';
+    }
+  }
+  (function init() {
+    const theme = load('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', theme);
+    document.getElementById('btnTheme').textContent = theme === 'dark' ? '🌙' : '☀️';
+    const lang = load('lang') || 'fr';
+    document.documentElement.setAttribute('data-lang', lang);
+    document.documentElement.lang = lang;
+    document.getElementById('btnLang').textContent = lang === 'fr' ? 'FR' : 'EN';
+    const scale = load('fontScale');
+    if (scale) document.documentElement.style.setProperty('--font-scale', scale);
+  })();
+  function openPhoto() {
+    document.getElementById('lbCap').innerHTML = document.getElementById('photoCaption').innerHTML;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePhoto() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closePhoto(); });
+  const ORDER = ['accueil','theorie','cyber','negociation','management','politique'];
+  function route() {
+    let id = location.hash.slice(1);
+    if (ORDER.indexOf(id) < 0) id = 'accueil';
+    document.querySelectorAll('main > section').forEach(function(sec) { sec.classList.toggle('active', sec.id === id); });
+    document.querySelectorAll('.nav-main a').forEach(function(a) { a.classList.toggle('active', a.getAttribute('href') === '#' + id); });
+    document.querySelector('.nav-main').classList.remove('open');
+    window.scrollTo(0, 0);
+  }
+  function setAll(open, id) {
+    document.querySelectorAll('#' + (id || 'theorie') + ' details.principle').forEach(function(d) { d.open = open; });
+  }
+  window.addEventListener('hashchange', route);
+  window.addEventListener('scroll', function() {
+    document.getElementById('backTop').classList.toggle('visible', window.scrollY > 400);
+  });
+  route();
+</script>
+</body>
+</html>
